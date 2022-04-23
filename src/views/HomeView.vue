@@ -1,24 +1,24 @@
 <template>
-  <router-link to="/"></router-link>
-
   <nav id="app" class="container-fluid">
-    <div id="homeIcon">
-      <a class="navbar-brand" href="/">
-        <img
-          src="../assets/casa.png"
-          width="30"
-          height="30"
-          alt="problemas con el enlace del menu"
-        />
-      </a>
+    <div>
+      <router-link to="/home" id="homeIcon">
+        <a class="navbar-brand" href="">
+          <img
+            src="../assets/casa.png"
+            width="30"
+            height="30"
+            alt="problemas con el enlace del menu"
+          />
+        </a>
+      </router-link>
     </div>
 
     <ul class="nav nav-tabs justify-content-end mb-3">
+     <router-link to="/home">
+          <a class="nav-link active" href="">Home</a>
+        </router-link>
       <li class="nav-item">
-        <a class="nav-link active" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <router-link to="/about">
+        <router-link to="/login">
           <a class="nav-link" href="">Log in</a>
         </router-link>
       </li>
@@ -32,7 +32,7 @@
         <a class="nav-link hiddenNav" href=""></a>
       </li>
       <li class="nav-item">
-        <a class="navbar-brand" href="">
+        <a class="navbar-brand" href="https://es-es.facebook.com/">
           <img
             id="insta"
             src="../assets/facebook_1.jpg"
@@ -43,7 +43,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="navbar-brand" href="">
+        <a class="navbar-brand" href="https://www.instagram.com/">
           <img
             src="../assets/instagram_2.jpg"
             width="48"
@@ -53,7 +53,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="navbar-brand" href="">
+        <a class="navbar-brand" href="https://twitter.com/i/flow/login">
           <img
             src="../assets/twitter_1.jpg"
             width="47"
@@ -91,15 +91,17 @@
               gravida praesent erat.
             </p>
 
-            <a href="" class="btn botton"
-              >Investiganos
-              <img
-                src="../assets/flecha-correcta.png"
-                alt="error de acceso de imagen de adelante"
-                width="35"
-                height="35"
-              />
-            </a>
+            <router-link to="/about">
+              <a href="" class="btn botton"
+                >Investiganos
+                <img
+                  src="../assets/flecha-correcta.png"
+                  alt="error de acceso de imagen de adelante"
+                  width="35"
+                  height="35"
+                />
+              </a>
+            </router-link>
 
             <p class="card-text">
               <small class="text-muted"

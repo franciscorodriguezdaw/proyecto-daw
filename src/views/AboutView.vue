@@ -1,44 +1,145 @@
 <template>
-  <nav id="about" class="container-fluid">
-    <div id="homeIcon">
-      <a class="navbar-brand" href="index.html">
-        <img
-          src="../assets/casa.png"
-          width="30"
-          height="30"
-          alt="problemas con el enlace del menu"
-        />
-      </a>
+  <nav id="app" class="container-fluid">
+    <div>
+      <router-link to="/home" id="homeIcon">
+        <a class="navbar-brand" href="">
+          <img
+            src="../assets/casa.png"
+            width="30"
+            height="30"
+            alt="problemas con el enlace del menu"
+          />
+        </a>
+      </router-link>
     </div>
+
+    <ul class="nav nav-tabs justify-content-end mb-3">
+      <li class="nav-item">
+        <router-link to="/home">
+          <a class="nav-link" href="">Home</a>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/login">
+          <a class="nav-link" href="">Log in</a>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link hiddenNav" href=""></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link hiddenNav" href=""></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link hiddenNav" href=""></a>
+      </li>
+      <li class="nav-item">
+        <a class="navbar-brand" href="https://es-es.facebook.com/">
+          <img
+            id="insta"
+            src="../assets/facebook_1.jpg"
+            width="50"
+            height="50"
+            alt="problemas con Instagram"
+          />
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="navbar-brand" href="https://www.instagram.com/">
+          <img
+            src="../assets/instagram_2.jpg"
+            width="48"
+            height="48"
+            alt="problemas con Facebook"
+          />
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="navbar-brand" href="https://twitter.com/i/flow/login">
+          <img
+            src="../assets/twitter_1.jpg"
+            width="47"
+            height="47"
+            alt="problemas con Instagram"
+          />
+        </a>
+      </li>
+    </ul>
   </nav>
 
-  <article class="container text-center">
-    <div class="card border-warning mb-3">
-      <div class="card-header">
+  <article class="container">
+    <div class="card-group">
+      <div class="card">
         <img
-          src="../assets/usuario.png"
-          alt="problemas con la imagen del usuario"
+          src="../assets/investigation.jpg"
+          width="170"
+          height="270"
+          class="card-img-top"
+          alt="no se cargo la imagen de investigación"
         />
+        <div class="card-body">
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+          <h5 class="card-title">Investigación Constante</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
       </div>
-      <div class="card-body">
-        <p class="card-text text-center"><label for="name">Usuario</label></p>
-        <p class="card-text text-center">
-          <input type="text" name="name" id="name" />
-        </p>
-
-        <p class="card-text text-center">
-          <label for="password">Contraseña</label>
-        </p>
-        <p class="card-text text-center">
-          <input type="password" name="password" id="password" />
-        </p>
-          <a href="moreInf.html" class="btn botton">CONFIRMAR</a>
+      <div class="card">
+        <img
+          src="../assets/everyNecesity.jpg"
+          width="70"
+          height="270"
+          class="card-img-top"
+          alt="no se cargo la imagen de lo que tu necesites"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+          <h5 class="card-title">Conseguimos Adaptarnos</h5>
+          <p class="card-text">
+            This card has supporting text below as a natural lead-in to
+            additional content.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="../assets/multiworck.jpg"
+          width="170"
+          height="270"
+          class="card-img-top"
+          alt="no se cargo la imagen de disponibilidad"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+          <h5 class="card-title">Trabajamos en Diversos Campos</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This card has even longer content than the
+            first to show that equal height action.
+          </p>
+        </div>
       </div>
     </div>
   </article>
+
+  <footer class="py-4 bg-dark text-white">
+    <div class="container text-center">
+      <small>Copyright &copy; 2022 - TopHandler.S.L</small>
+    </div>
+  </footer>
 </template>
 
-   <style>
+
+
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -46,6 +147,14 @@
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 20px;
 }
 
 #homeIcon {
@@ -75,6 +184,30 @@ a > img {
   margin-bottom: 8px;
 }
 
+.hiddenNav {
+  visibility: hidden;
+}
+
+.nav-link {
+  font-size: 21px;
+  padding-bottom: 17px;
+}
+
+.nav-link:link,
+.nav-link:visited,
+.nav-link:active {
+  color: rgb(229, 155, 27);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: rgb(163, 130, 29) !important;
+  background-color: transparent;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
 .card-title {
   margin-top: 35px;
   font-size: 50px;
@@ -92,13 +225,6 @@ a > img {
   padding: 20px;
   padding-left: 35px;
   padding-right: 35px;
-  max-width: 28rem;
-}
-
-.container {
-  margin-top: 80px;
-  left: 35%;
-  position: absolute;
 }
 
 .nav,
@@ -108,39 +234,5 @@ nav {
 
 article {
   margin-bottom: 300px;
-}
-
-label {
-  font-weight: bolder;
-}
-
-.btn {
-  color: #fff;
-  margin-top: 40px;
-  font-size: 16px;
-  font-weight: bolder;
-  background-color: #edaa6c;
-  height: 60px;
-  width: 140px;
-  text-align: center;
-  padding-top: 15px;
-}
-
-.btn:hover {
-  color: #000000;
-  background-color: #fdaf1d;
-}
-
-.card-header {
-  background-color: #ffca97;
-  margin-top: 12px;
-}
-
-.card-header > img {
-  padding: 15px;
-}
-
-.botton {
-  margin-right: 27%;
 }
 </style>
