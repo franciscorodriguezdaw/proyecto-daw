@@ -1,7 +1,7 @@
 <template>
   <nav id="about" class="container-fluid">
     <div>
-      <router-link to="/home" id="homeIcon">
+      <router-link to="/" id="homeIcon">
         <a class="navbar-brand" href="">
           <img
             src="../assets/casa.png"
@@ -34,7 +34,9 @@
         <p class="card-text text-center">
           <input type="password" name="password" id="password" />
         </p>
-        <a href="moreInf.html" class="btn botton">CONFIRMAR</a>
+        <router-link to="/usersapp">
+          <a href="" class="btn botton">CONFIRMAR</a>
+        </router-link>
       </div>
     </div>
   </article>
@@ -140,8 +142,8 @@ label {
   padding: 15px;
 }
 
-.card-body{
-    margin-right: 15px;
+.card-body {
+  margin-right: 15px;
 }
 
 .botton {

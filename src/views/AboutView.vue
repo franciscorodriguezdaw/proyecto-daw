@@ -1,7 +1,7 @@
 <template>
   <nav id="app" class="container-fluid">
     <div>
-      <router-link to="/home" id="homeIcon">
+      <router-link to="/" id="homeIcon">
         <a class="navbar-brand" href="">
           <img
             src="../assets/casa.png"
@@ -15,7 +15,7 @@
 
     <ul class="nav nav-tabs justify-content-end mb-3">
       <li class="nav-item">
-        <router-link to="/home">
+        <router-link to="/">
           <a class="nav-link" href="">Home</a>
         </router-link>
       </li>

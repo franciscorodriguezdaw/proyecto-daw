@@ -14,12 +14,21 @@
     </div>
 
     <ul class="nav nav-tabs justify-content-end mb-3">
-     <router-link to="/">
-          <a class="nav-link active" href="">Home</a>
-        </router-link>
+      <router-link to="/">
+        <a class="nav-link" href="">Home</a>
+      </router-link>
+      <router-link to="/login">
+        <a class="nav-link active" href="">Logged</a>
+      </router-link>
       <li class="nav-item">
-        <router-link to="/login">
-          <a class="nav-link" href="">Log in</a>
+        <a class="nav-link" href="">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Dimiss</a>
+      </li>
+      <li class="nav-item">
+        <router-link to="/">
+          <a class="nav-link" href="">Log Out</a>
         </router-link>
       </li>
       <li class="nav-item">
@@ -68,47 +77,34 @@
   <article class="container">
     <div class="card">
       <div class="row">
-        <div class="col col-6">
+        <div class="col-6 bodyUser">
+          <h3 class="card-text">Title</h3>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <p class="card-text moreAbUser">
+            Learn More
+            <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
+          </p>
+        </div>
+        <div class="col bodyUser"></div>
+        <div class="col bodyUser"></div>
+        <div class="col bodyUser"></div>
+        <div class="col bodyUser"></div>
+        <div class="col bodyUser"></div>
+
+        <div class="col-1 cardUser" id="imgUser">
           <img
-            src="../assets/office.jpg"
-            class="img-fluid rounded-start"
-            alt="error al cargar imagen de Home"
+            width="100px"
+            height="100px"
+            src="../assets/perfil-del-usuario.png"
+            alt="error_imagen_usuario"
           />
         </div>
-        <div class="col-6 text-left">
-          <div class="card-body">
-            <h5 class="card-title">Top Handler</h5>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit lectus
-              pellentesque ornare, hendrerit euismod rutrum aliquam eget netus
-              ultricies vulputate suscipit senectus, fusce aptent curae cursus
-              fringilla a sagittis habitant nisl.
-            </p>
-
-            <p class="card-text">
-              Arcu aliquet fringilla ut ac blandit tincidunt dis aenean
-              parturient rhoncus dui, tristique a habitant ligula sed lacus
-              gravida praesent erat.
-            </p>
-
-            <router-link to="/about">
-              <a href="" class="btn botton"
-                >Investiganos
-                <img
-                  src="../assets/flecha-correcta.png"
-                  alt="error de acceso de imagen de adelante"
-                  width="35"
-                  height="35"
-                />
-              </a>
-            </router-link>
-
-            <p class="card-text">
-              <small class="text-muted"
-                >Editado el jueves 14, de Abril de 2022</small
-              >
-            </p>
-          </div>
+        <div class="col-3 cardUser" id="nameUser">
+          <p id="nameUser">Usuario Cualquiera</p>
+          <p>Laburo</p>
         </div>
       </div>
     </div>
@@ -121,8 +117,6 @@
   </footer>
 </template>
 
-<script>
-</script>
 
 <style>
 #app {
@@ -208,11 +202,17 @@ a {
 }
 
 .card {
-  border-color: #debc25;
+  border: 2px solid #806b2d6c;
+  width: 80%;
+  margin: 0 auto;
   margin-top: 50px;
   padding: 20px;
   padding-left: 35px;
   padding-right: 35px;
+}
+
+.card > .row {
+  height: 210px;
 }
 
 .rounded-start {
@@ -238,5 +238,36 @@ nav {
 .btn:hover {
   color: rgb(255, 229, 181);
   background-color: #272c2c;
+}
+
+.cardUser {
+  margin-top: 40px;
+  margin-right: 2%;
+  text-align: right;
+}
+
+#nameUser > p {
+  margin-top: 20px;
+  text-align: left;
+  font-weight: bolder;
+}
+
+h3 {
+  font-weight: bolder;
+}
+
+.moreAbUser {
+  color: #f4a20a;
+  margin: 0 auto;
+  margin-left: 20px;
+}
+
+.bodyUser {
+  background: #f2eeee80;
+}
+
+.card {
+  padding: 0;
+  padding-left: 12px;
 }
 </style>
