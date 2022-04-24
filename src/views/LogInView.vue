@@ -25,18 +25,16 @@
       <div class="card-body">
         <p class="card-text text-center"><label for="name">Usuario</label></p>
         <p class="card-text text-center">
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" v-model="username" />
         </p>
 
         <p class="card-text text-center">
           <label for="password">Contraseña</label>
         </p>
         <p class="card-text text-center">
-          <input type="password" name="password" id="password" />
+          <input type="password" name="password" id="password" v-model="password"/>
         </p>
-        <router-link to="/usersapp">
-          <a href="" class="btn botton">CONFIRMAR</a>
-        </router-link>
+        <input type="submit" class="btn" @click="login()" value="Acceder">
       </div>
     </div>
   </article>
@@ -125,7 +123,6 @@ label {
   height: 60px;
   width: 140px;
   text-align: center;
-  padding-top: 15px;
 }
 
 .btn:hover {
@@ -142,11 +139,47 @@ label {
   padding: 15px;
 }
 
-.card-body {
-  margin-right: 15px;
+.card-body{
+    margin-right: 15px;
 }
 
 .botton {
   margin-right: 27%;
 }
 </style>
+
+<script>
+import axios from "axios";
+
+export default {
+  data: () => ({
+    username: "",
+    password: ""
+  }),
+  methods: {
+    login() {
+      console.log(this.username);
+      console.log(this.password);
+
+      axios.post('http://localhost/dashboard/proyecto-daw/src/backend/test01.php', {
+        request: 1,
+        username: this.username,
+        password: this.password
+       })
+       .then(function(response) {
+        console.log(response);
+        console.log(JSON.stringify(response.data));
+
+        if (response.data[0].status == 1) {
+         alert('Login Successfully');
+        } else {
+         alert("User does not exist");
+        }
+       })
+       .catch(function(error) {
+        console.log(error);
+       });
+    }
+  }
+};
+</script>

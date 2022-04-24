@@ -83,6 +83,40 @@ function deleteUserById($id)
     return $stmt->execute();
 }
 
+function getUserByCredentials($username, $password)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "SELECT * FROM `user` WHERE `username` = ? AND `password` = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $username);
+    $stmt->bindParam(2, $password);
+
+    $stmt->execute();
+
+    $row = $stmt->fetch();
+
+    return $row;
+}
+
+function getUserById($id)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "SELECT * FROM `user` WHERE `id` = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $id);
+
+    $stmt->execute();
+
+    $row = $stmt->fetch();
+    return $row;
+}
+
 function getUserJobById($id)
 {
     $pdo = Connection::getInstance();
