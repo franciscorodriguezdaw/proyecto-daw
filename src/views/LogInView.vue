@@ -34,20 +34,28 @@
         <p class="card-text text-center">
           <input type="password" name="password" id="password" v-model="password"/>
         </p>
-        <input type="submit" class="btn" @click="login()" value="Acceder">
+        <input type="submit" class="btn button" @click="login()" value="Acceder">
       </div>
     </div>
   </article>
+  <footer class="py-4 bg-dark text-white">
+    <div class="container text-center">
+      <small>Copyright &copy; 2022 - TopHandler.S.L</small>
+    </div>
+  </footer>
 </template>
 
    <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 20px;
+}
+body {
+  width: 100vw;
+  position: fixed;
 }
 
 #homeIcon {
@@ -107,7 +115,7 @@ nav {
 }
 
 article {
-  margin-bottom: 300px;
+  top: -20px;
 }
 
 label {
@@ -143,7 +151,7 @@ label {
     margin-right: 15px;
 }
 
-.botton {
+.button {
   margin-right: 27%;
 }
 </style>
@@ -171,6 +179,7 @@ export default {
         console.log(JSON.stringify(response.data));
 
         if (response.data[0].status == 1) {
+          window.location = "users";
          alert('Login Successfully');
         } else {
          alert("User does not exist");

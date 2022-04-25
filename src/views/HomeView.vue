@@ -154,6 +154,10 @@ footer {
   background: rgb(254, 161, 1);
 }
 
+#homeIcon:hover{
+  background: rgb(204, 111, 1);
+}
+
 #homeIcon > a {
   margin: 0 auto;
 }
@@ -208,21 +212,14 @@ a {
 }
 
 .card {
-  border-color: #debc25;
   margin-top: 50px;
   padding: 20px;
-  padding-left: 35px;
-  padding-right: 35px;
+  padding: 0 45px;
 }
 
 .rounded-start {
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-.nav,
-nav {
-  border-color: #debc25 !important;
 }
 
 .btn {

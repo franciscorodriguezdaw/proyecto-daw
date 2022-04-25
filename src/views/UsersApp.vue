@@ -7,7 +7,7 @@
             src="../assets/casa.png"
             width="30"
             height="30"
-            alt="problemas con el enlace del menu"
+            alt="Menú"
           />
         </a>
       </router-link>
@@ -18,13 +18,13 @@
         <a class="nav-link" href="">Home</a>
       </router-link>
       <router-link to="/login">
-        <a class="nav-link active" href="">Logged</a>
+        <a class="nav-link active" href="">Users</a>
       </router-link>
       <li class="nav-item">
         <a class="nav-link" href="">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Dimiss</a>
+        <a class="nav-link" href="">Delete</a>
       </li>
       <li class="nav-item">
         <router-link to="/">
@@ -47,7 +47,7 @@
             src="../assets/facebook_1.jpg"
             width="50"
             height="50"
-            alt="problemas con Instagram"
+            alt="Facebook"
           />
         </a>
       </li>
@@ -57,7 +57,7 @@
             src="../assets/instagram_2.jpg"
             width="48"
             height="48"
-            alt="problemas con Facebook"
+            alt="Instagram"
           />
         </a>
       </li>
@@ -67,7 +67,7 @@
             src="../assets/twitter_1.jpg"
             width="47"
             height="47"
-            alt="problemas con Instagram"
+            alt="Twitter"
           />
         </a>
       </li>
