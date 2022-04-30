@@ -20,12 +20,10 @@ if ($request == 1) {
 
     if ($user) {
         $response[] = array('status' => 1);
-        session_start();
-        $_SESSION["username"] = $data->username;
-        $_SESSION["password"] = $data->password;
     } else {
         $response[] = array('status' => 0);
     }
+    login($data->username, $data->password);
     echo json_encode($response);
 
     exit;

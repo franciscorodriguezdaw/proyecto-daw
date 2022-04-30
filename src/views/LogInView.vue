@@ -39,19 +39,18 @@
     </div>
   </article>
   <footer class="py-4 bg-dark text-white">
-    <div class="container text-center">
       <small>Copyright &copy; 2022 - TopHandler.S.L</small>
-    </div>
   </footer>
 </template>
 
    <style>
 footer {
+  color: white;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  font-size: 20px;
+  font-size: 15px;
 }
 body {
   width: 100vw;
@@ -95,7 +94,6 @@ a > img {
 }
 
 .card {
-  border-color: #debc25;
   margin-top: 50px;
   padding: 20px;
   padding-left: 25px;
@@ -111,11 +109,12 @@ a > img {
 
 .nav,
 nav {
-  border-color: #debc25 !important;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
 article {
-  top: -20px;
+  top: -5px;
 }
 
 label {
@@ -139,7 +138,7 @@ label {
 }
 
 .card-header {
-  background-color: #ffca97;
+  background-color: #edaa6c;
   margin-top: 12px;
 }
 
@@ -179,8 +178,8 @@ export default {
         console.log(JSON.stringify(response.data));
 
         if (response.data[0].status == 1) {
+          alert('Login Successfully');
           window.location = "users";
-         alert('Login Successfully');
         } else {
          alert("User does not exist");
         }

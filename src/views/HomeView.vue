@@ -139,7 +139,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  font-size: 20px;
+  font-size: 15px;
 }
 #homeIcon {
   top: 20px;
@@ -213,7 +213,6 @@ a {
 
 .card {
   margin-top: 50px;
-  padding: 20px;
   padding: 0 45px;
 }
 

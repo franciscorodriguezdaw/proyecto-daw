@@ -84,8 +84,8 @@
             content.
           </p>
           <p class="card-text moreAbUser">
-            Learn More
-            <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
+            Detalles
+            <img src="../assets/buscando.png" alt="Detalles" />
           </p>
         </div>
         <div class="col bodyUser"></div>

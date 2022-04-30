@@ -117,6 +117,22 @@ function getUserById($id)
     return $row;
 }
 
+function getUsers()
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "SELECT * FROM `user`";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $id);
+
+    $stmt->execute();
+
+    $row = $stmt->fetch();
+    return $row;
+}
+
 function getUserJobById($id)
 {
     $pdo = Connection::getInstance();
@@ -139,13 +155,10 @@ function login($username, $password)
     $stmt = $pdo->query($sql);
     while ($row = $stmt->fetch()) {
         if ($username == $row["username"] && $password == $row["password"]) {
-            $logged = true;
+            session_start();
+            $_SESSION[$row["username"]] = $row["username"];
+            return true;
         }
-    }
-    if ($logged) {
-        session_start();
-        $_SESSION[$row["username"]] = $row["username"];
-        return true;
     }
     return false;
 }
