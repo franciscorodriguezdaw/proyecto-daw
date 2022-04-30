@@ -246,13 +246,10 @@ export default {
               "Usuario o contraseña incorrectos",
               "error"
             );
-
-            window.location = "users";
           }
         })
         .catch(function (error) {
           console.log(error);
-          console.log(axios);
         });
     },
   },
