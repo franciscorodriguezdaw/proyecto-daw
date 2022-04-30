@@ -78,6 +78,16 @@ body {
   border-radius: 40%;
   border: 2px solid rgb(229, 155, 27);
   background: rgb(254, 161, 1);
+  transition: 2s;
+}
+
+#homeIcon:hover {
+  background-color: #fffae3;
+  top: 30px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 #homeIcon > a {
@@ -164,6 +174,20 @@ label {
 .button {
   margin-right: 27%;
 }
+
+i {
+  font-size: 45px;
+  color: #f4a20a;
+  font-weight: bolder;
+  margin-right: 6px;
+  transition: 1s;
+}
+i:hover {
+  margin-bottom: 20px;
+  padding-top: -40px;
+  font-size: 60px;
+  color: #ffd12b;
+}
 </style>
 
 <script>
@@ -184,6 +208,9 @@ export default {
         .post(
           "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
           {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
             request: 1,
             username: this.username,
             password: this.password,
@@ -214,11 +241,18 @@ export default {
               window.location = "users";
             }, 2000);
           } else {
-            Swal.fire('No se pudo iniciar sesión', 'Usuario o contraseña incorrectos', 'error');
+            Swal.fire(
+              "No se pudo iniciar sesión",
+              "Usuario o contraseña incorrectos",
+              "error"
+            );
+
+            window.location = "users";
           }
         })
         .catch(function (error) {
           console.log(error);
+          console.log(axios);
         });
     },
   },

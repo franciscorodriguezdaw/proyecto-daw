@@ -14,9 +14,9 @@
     </div>
 
     <ul class="nav nav-tabs justify-content-end mb-3">
-     <router-link to="/">
-          <a class="nav-link active" href="">Home</a>
-        </router-link>
+      <router-link to="/">
+        <a class="nav-link active" href="">Home</a>
+      </router-link>
       <li class="nav-item">
         <router-link to="/login">
           <a class="nav-link" href="">Log in</a>
@@ -33,33 +33,17 @@
       </li>
       <li class="nav-item">
         <a class="navbar-brand" href="https://es-es.facebook.com/">
-          <img
-            id="insta"
-            src="../assets/facebook_1.jpg"
-            width="50"
-            height="50"
-            alt="problemas con Instagram"
-          />
+          <i class="fa-brands fa-facebook-square"></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="navbar-brand" href="https://www.instagram.com/">
-          <img
-            src="../assets/instagram_2.jpg"
-            width="48"
-            height="48"
-            alt="problemas con Facebook"
-          />
+          <i class="fa-brands fa-instagram-square"></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="navbar-brand" href="https://twitter.com/i/flow/login">
-          <img
-            src="../assets/twitter_1.jpg"
-            width="47"
-            height="47"
-            alt="problemas con Instagram"
-          />
+          <i class="fa-brands fa-twitter-square"></i>
         </a>
       </li>
     </ul>
@@ -139,7 +123,7 @@ footer {
   font-size: 15px;
 }
 #homeIcon {
-  top: 20px;
+  top: 40px;
   left: 20px;
   position: absolute;
   width: 55px;
@@ -149,11 +133,18 @@ footer {
   border-radius: 40%;
   border: 2px solid rgb(229, 155, 27);
   background: rgb(254, 161, 1);
+  transition: 2s;
 }
 
 #homeIcon:hover{
-  background: rgb(204, 111, 1);
+  background-color: #fffae3;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  margin: 0 auto;
 }
+
 
 #homeIcon > a {
   margin: 0 auto;
@@ -231,5 +222,18 @@ a {
 .btn:hover {
   color: rgb(255, 229, 181);
   background-color: #272c2c;
+}
+i {
+  font-size: 45px;
+  color: #f4a20a;
+  font-weight: bolder;
+  margin-right: 6px;
+  transition: 1s;
+}
+i:hover {
+  margin-bottom: 20px;
+  padding-top: -40px;
+  font-size: 60px;
+  color: #ffd12b;
 }
 </style>
