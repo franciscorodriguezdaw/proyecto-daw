@@ -32,14 +32,24 @@
           <label for="password">Contraseña</label>
         </p>
         <p class="card-text text-center">
-          <input type="password" name="password" id="password" v-model="password"/>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            v-model="password"
+          />
         </p>
-        <input type="submit" class="btn button" @click="login()" value="Acceder">
+        <input
+          type="submit"
+          class="btn button"
+          value="Acceder"
+          @click="login()"
+        />
       </div>
     </div>
   </article>
   <footer class="py-4 bg-dark text-white">
-      <small>Copyright &copy; 2022 - TopHandler.S.L</small>
+    <small>Copyright &copy; 2022 - TopHandler.S.L</small>
   </footer>
 </template>
 
@@ -68,6 +78,16 @@ body {
   border-radius: 40%;
   border: 2px solid rgb(229, 155, 27);
   background: rgb(254, 161, 1);
+  transition: 2s;
+}
+
+#homeIcon:hover {
+  background-color: #fffae3;
+  top: 30px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 #homeIcon > a {
@@ -110,7 +130,7 @@ a > img {
 .nav,
 nav {
   padding-bottom: 35px;
-  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 article {
@@ -146,12 +166,26 @@ label {
   padding: 15px;
 }
 
-.card-body{
-    margin-right: 15px;
+.card-body {
+  margin-right: 15px;
 }
 
 .button {
   margin-right: 27%;
+}
+
+i {
+  font-size: 45px;
+  color: #f4a20a;
+  font-weight: bolder;
+  margin-right: 6px;
+  transition: 1s;
+}
+i:hover {
+  margin-bottom: 20px;
+  padding-top: -40px;
+  font-size: 60px;
+  color: #ffd12b;
 }
 </style>
 
@@ -161,33 +195,40 @@ import axios from "axios";
 export default {
   data: () => ({
     username: "",
-    password: ""
+    password: "",
   }),
   methods: {
     login() {
       console.log(this.username);
       console.log(this.password);
 
-      axios.post('http://localhost/dashboard/proyecto-daw/src/backend/test01.php', {
-        request: 1,
-        username: this.username,
-        password: this.password
-       })
-       .then(function(response) {
-        console.log(response);
-        console.log(JSON.stringify(response.data));
+      axios
+        .post(
+          "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+            request: 1,
+            username: this.username,
+            password: this.password,
+          }
+        )
+        .then(function (response) {
+          console.log(response);
+          console.log(JSON.stringify(response.data));
 
-        if (response.data[0].status == 1) {
-          alert('Login Successfully');
-          window.location = "users";
-        } else {
-         alert("User does not exist");
-        }
-       })
-       .catch(function(error) {
-        console.log(error);
-       });
-    }
-  }
+          if (response.data[0].status == 1) {
+            window.location = "users";
+          } else {
+            alert("User does not exist");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          console.log(axios);
+        });
+    },
+  },
 };
 </script>

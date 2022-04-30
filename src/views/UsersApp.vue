@@ -3,12 +3,7 @@
     <div>
       <router-link to="/" id="homeIcon">
         <a class="navbar-brand" href="">
-          <img
-            src="../assets/casa.png"
-            width="30"
-            height="30"
-            alt="Menú"
-          />
+          <img src="../assets/casa.png" width="30" height="30" alt="Menú" />
         </a>
       </router-link>
     </div>
@@ -22,9 +17,6 @@
       </router-link>
       <li class="nav-item">
         <a class="nav-link" href="">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Delete</a>
       </li>
       <li class="nav-item">
         <router-link to="/">
@@ -42,33 +34,17 @@
       </li>
       <li class="nav-item">
         <a class="navbar-brand" href="https://es-es.facebook.com/">
-          <img
-            id="insta"
-            src="../assets/facebook_1.jpg"
-            width="50"
-            height="50"
-            alt="Facebook"
-          />
+          <i class="fa-brands fa-facebook-square" id="socialWebs"></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="navbar-brand" href="https://www.instagram.com/">
-          <img
-            src="../assets/instagram_2.jpg"
-            width="48"
-            height="48"
-            alt="Instagram"
-          />
+          <i class="fa-brands fa-instagram-square" id="socialWebs"></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="navbar-brand" href="https://twitter.com/i/flow/login">
-          <img
-            src="../assets/twitter_1.jpg"
-            width="47"
-            height="47"
-            alt="Twitter"
-          />
+          <i class="fa-brands fa-twitter-square" id="socialWebs"></i>
         </a>
       </li>
     </ul>
@@ -84,17 +60,13 @@
             content.
           </p>
           <p class="card-text moreAbUser">
-            Detalles
-            <img src="../assets/buscando.png" alt="Detalles" />
+            Learn More
+            <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
           </p>
         </div>
-        <div class="col bodyUser"></div>
-        <div class="col bodyUser"></div>
-        <div class="col bodyUser"></div>
-        <div class="col bodyUser"></div>
-        <div class="col bodyUser"></div>
+        <div class="col-1 bodyUser"></div>
 
-        <div class="col-1 cardUser" id="imgUser">
+        <div class="col cardUser" id="imgUser">
           <img
             width="100px"
             height="100px"
@@ -102,10 +74,12 @@
             alt="error_imagen_usuario"
           />
         </div>
-        <div class="col-3 cardUser" id="nameUser">
-          <p id="nameUser">Usuario Cualquiera</p>
+        <div class="col cardUser" id="nameUser">
+          <p>Usuario Cualquiera</p>
           <p>Laburo</p>
         </div>
+        <div class="ghost"></div>
+        <i class="fa-solid fa-xmark" id="deleteIcon"></i>
       </div>
     </div>
   </article>
@@ -135,8 +109,9 @@ footer {
   width: 100%;
   font-size: 20px;
 }
+
 #homeIcon {
-  top: 20px;
+  top: 40px;
   left: 20px;
   position: absolute;
   width: 55px;
@@ -146,6 +121,16 @@ footer {
   border-radius: 40%;
   border: 2px solid rgb(229, 155, 27);
   background: rgb(254, 161, 1);
+  transition: 2s;
+}
+
+#homeIcon:hover {
+  background-color: #fffae3;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 #homeIcon > a {
@@ -194,6 +179,7 @@ a {
   margin-top: 35px;
   font-size: 50px;
 }
+
 .card-text {
   text-align: left;
   margin-top: 30px;
@@ -248,8 +234,8 @@ nav {
 
 #nameUser > p {
   margin-top: 20px;
-  text-align: left;
   font-weight: bolder;
+  text-align: left;
 }
 
 h3 {
@@ -269,5 +255,40 @@ h3 {
 .card {
   padding: 0;
   padding-left: 12px;
+}
+
+.ghost {
+  width: 10px;
+}
+
+#socialWebs {
+  font-size: 45px;
+  color: #f4a20a;
+  margin-right: 6px;
+  transition: 1s;
+}
+#socialWebs:hover {
+  margin-bottom: 20px;
+  padding-top: -40px;
+  font-size: 60px;
+  color: #ffd12b;
+}
+
+#deleteIcon {
+  position: absolute;
+  left: 93.2%;
+  bottom: 83%;
+  transition: 1s;
+  background-color: #272c2c;
+  border-bottom-left-radius: 15px;
+  width: 7%;
+  font-size: 30px;
+  padding: 4px;
+}
+
+#deleteIcon:hover {
+  color: aliceblue !important;
+  margin-bottom: 0px;
+  padding-top: 3px;
 }
 </style>
