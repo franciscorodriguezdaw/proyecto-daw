@@ -32,14 +32,24 @@
           <label for="password">Contraseña</label>
         </p>
         <p class="card-text text-center">
-          <input type="password" name="password" id="password" v-model="password"/>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            v-model="password"
+          />
         </p>
-        <input type="submit" class="btn button" @click="login()" value="Acceder">
+        <input
+          type="submit"
+          class="btn button"
+          @click="login()"
+          value="Acceder"
+        />
       </div>
     </div>
   </article>
   <footer class="py-4 bg-dark text-white">
-      <small>Copyright &copy; 2022 - TopHandler.S.L</small>
+    <small>Copyright &copy; 2022 - TopHandler.S.L</small>
   </footer>
 </template>
 
@@ -96,6 +106,7 @@ a > img {
 .card {
   margin-top: 50px;
   padding: 20px;
+  margin-left: 25px;
   padding-left: 25px;
   padding-right: 35px;
   max-width: 28rem;
@@ -110,7 +121,7 @@ a > img {
 .nav,
 nav {
   padding-bottom: 35px;
-  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 article {
@@ -146,8 +157,8 @@ label {
   padding: 15px;
 }
 
-.card-body{
-    margin-right: 15px;
+.card-body {
+  margin-right: 15px;
 }
 
 .button {
@@ -157,37 +168,59 @@ label {
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default {
   data: () => ({
     username: "",
-    password: ""
+    password: "",
   }),
   methods: {
     login() {
       console.log(this.username);
       console.log(this.password);
 
-      axios.post('http://localhost/dashboard/proyecto-daw/src/backend/test01.php', {
-        request: 1,
-        username: this.username,
-        password: this.password
-       })
-       .then(function(response) {
-        console.log(response);
-        console.log(JSON.stringify(response.data));
+      axios
+        .post(
+          "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
+          {
+            request: 1,
+            username: this.username,
+            password: this.password,
+          }
+        )
+        .then(function (response) {
+          console.log(response);
+          console.log(JSON.stringify(response.data));
 
-        if (response.data[0].status == 1) {
-          alert('Login Successfully');
-          window.location = "users";
-        } else {
-         alert("User does not exist");
-        }
-       })
-       .catch(function(error) {
-        console.log(error);
-       });
-    }
-  }
+          if (response.data[0].status == 1) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
+
+            Toast.fire({
+              icon: "success",
+              title: "Inicio de sesión correcto",
+            });
+            setTimeout(() => {
+              window.location = "users";
+            }, 2000);
+          } else {
+            Swal.fire('No se pudo iniciar sesión', 'Usuario o contraseña incorrectos', 'error');
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
