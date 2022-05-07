@@ -1,55 +1,5 @@
 <template>
-  <nav id="app" class="container-fluid">
-    <div>
-      <router-link to="/" id="homeIcon">
-        <a class="navbar-brand" href="">
-          <img
-            src="../assets/casa.png"
-            width="30"
-            height="30"
-            alt="problemas con el enlace del menu"
-          />
-        </a>
-      </router-link>
-    </div>
-
-    <ul class="nav nav-tabs justify-content-end mb-3">
-      <li class="nav-item">
-        <router-link to="/">
-          <a class="nav-link" href="">Home</a>
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/login">
-          <a class="nav-link" href="">Log in</a>
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link hiddenNav" href=""></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link hiddenNav" href=""></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link hiddenNav" href=""></a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="https://es-es.facebook.com/">
-          <i class="fa-brands fa-facebook-square"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="https://www.instagram.com/">
-          <i class="fa-brands fa-instagram-square"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="https://twitter.com/i/flow/login">
-          <i class="fa-brands fa-twitter-square"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
+<nav-logOut></nav-logOut>
 
   <article class="container">
     <div class="card-group">
@@ -114,13 +64,22 @@
     </div>
   </article>
 
-  <footer class="py-4 bg-dark text-white">
-    <div class="container text-center">
-      <small>Copyright &copy; 2022 - TopHandler.S.L</small>
-    </div>
-  </footer>
+  <footer-personal></footer-personal>
 </template>
 
+
+<script>
+import FooterPersonal from "../components/footer.vue";
+import NavLogOut from "../components/navLogOut.vue";
+
+export default {
+  name: "App",
+  components: {
+    FooterPersonal,
+    NavLogOut,
+  },
+};
+</script>
 
 
 <style>
@@ -133,16 +92,8 @@
   margin-top: 60px;
 }
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  font-size: 20px;
-}
-
 #homeIcon {
-   top: 40px;
+  top: 40px;
   left: 20px;
   position: absolute;
   width: 55px;
@@ -164,7 +115,7 @@ footer {
   margin-top: 12px;
 }
 
-#homeIcon:hover{
+#homeIcon:hover {
   background-color: #fffae3;
   top: 10px;
   width: 60px;
@@ -203,30 +154,45 @@ a > img {
 }
 
 .card-title {
-  margin-top: 35px;
-  font-size: 50px;
+  text-align: left;
+  margin-top: 15%;
+  font-size: 40px;
 }
 
 .card-text {
   text-align: left;
-  margin-top: 30px;
-  font-size: 20px;
+  margin-left: 0.4% !important;
+  font-size: 24px;
 }
 
 .card {
-  border-color: #debc25;
-  margin-top: 50px;
-  padding: 20px;
+  margin-top: 70px;
   padding-left: 35px;
   padding-right: 35px;
 }
 
-.nav,
-nav {
-  border-color: #debc25 !important;
+.card-group > .card {
+  border-right-color: #debc25;
+  border-left-color: #ffffff;
+
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+  padding-right: 4%;
+  padding-left: 4%;
+  padding-top: 20px;
+}
+
+.card-group > .card:nth-child(3) {
+  border-right-color: #ffffff;
+  border-left-color: #debc25;
+
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+  padding: 2%;
 }
 
 article {
+  margin-top: 1.5%;
   margin-bottom: 300px;
 }
 i {
@@ -241,5 +207,20 @@ i:hover {
   padding-top: -40px;
   font-size: 60px;
   color: #ffd12b;
+}
+
+.card-body {
+  padding-top: 0%;
+  margin-top: 0%;
+}
+
+img {
+  margin-bottom: -8%;
+  margin-left: 2.5%;
+  padding-right: 2.5%;
+}
+.text-muted {
+  text-align: center;
+  margin-bottom: 5%;
 }
 </style>

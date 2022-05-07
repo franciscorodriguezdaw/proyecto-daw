@@ -1,55 +1,5 @@
 <template>
-  <nav id="app" class="container-fluid">
-    <div>
-      <router-link to="/" id="homeIcon">
-        <a class="navbar-brand" href="">
-          <img src="../assets/casa.png" width="30" height="30" alt="Menú" />
-        </a>
-      </router-link>
-    </div>
-
-    <ul class="nav nav-tabs justify-content-end mb-3">
-      <router-link to="/">
-        <a class="nav-link" href="">Home</a>
-      </router-link>
-      <router-link to="/login">
-        <a class="nav-link active" href="">Users</a>
-      </router-link>
-      <li class="nav-item">
-        <a class="nav-link" href="">Register</a>
-      </li>
-      <li class="nav-item">
-        <router-link to="/">
-          <a class="nav-link" href="">Log Out</a>
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link hiddenNav" href=""></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link hiddenNav" href=""></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link hiddenNav" href=""></a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="https://es-es.facebook.com/">
-          <i class="fa-brands fa-facebook-square" id="socialWebs"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="https://www.instagram.com/">
-          <i class="fa-brands fa-instagram-square" id="socialWebs"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="https://twitter.com/i/flow/login">
-          <i class="fa-brands fa-twitter-square" id="socialWebs"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
+  <nav-logIn></nav-logIn>
   <article class="container">
     <div class="card">
       <div class="row">
@@ -60,8 +10,12 @@
             content.
           </p>
           <p class="card-text moreAbUser">
-            Learn More
-            <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
+            <router-link to="/detail">
+            <a href="">
+              Sus detalles
+              <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
+            </a>
+            </router-link>
           </p>
         </div>
         <div class="col-1 bodyUser"></div>
@@ -84,13 +38,22 @@
     </div>
   </article>
 
-  <footer class="py-4 bg-dark text-white">
-    <div class="container text-center">
-      <small>Copyright &copy; 2022 - TopHandler.S.L</small>
-    </div>
-  </footer>
+  <footer-personal></footer-personal>
 </template>
 
+
+<script>
+import FooterPersonal from "../components/footer.vue";
+import NavLogIn from "../components/navLogIn.vue";
+
+export default {
+  name: "App",
+  components: {
+    FooterPersonal,
+    NavLogIn,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -100,79 +63,6 @@
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  font-size: 20px;
-}
-
-#homeIcon {
-  top: 40px;
-  left: 20px;
-  position: absolute;
-  width: 55px;
-  height: 55px;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 40%;
-  border: 2px solid rgb(229, 155, 27);
-  background: rgb(254, 161, 1);
-  transition: 2s;
-}
-
-#homeIcon:hover {
-  background-color: #fffae3;
-  top: 10px;
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-#homeIcon > a {
-  margin: 0 auto;
-}
-
-#homeIcon > a > img {
-  margin: 0 auto;
-  margin-top: 12px;
-}
-
-a > img {
-  margin: 0 auto;
-  margin-bottom: 8px;
-}
-
-.hiddenNav {
-  visibility: hidden;
-}
-
-.nav-link {
-  font-size: 21px;
-  padding-bottom: 17px;
-}
-
-a {
-  text-decoration: none !important;
-}
-
-.nav-link:link,
-.nav-link:visited,
-.nav-link:active {
-  color: rgb(229, 155, 27);
-  background-color: transparent;
-  text-decoration: none;
-}
-
-.nav-link:hover {
-  color: rgb(163, 130, 29) !important;
-  background-color: transparent;
-  font-weight: bolder;
-  text-decoration: none;
 }
 
 .card-title {
@@ -204,11 +94,6 @@ a {
 .rounded-start {
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-.nav,
-nav {
-  border-color: #debc25 !important;
 }
 
 .btn {
@@ -261,19 +146,6 @@ h3 {
   width: 10px;
 }
 
-#socialWebs {
-  font-size: 45px;
-  color: #f4a20a;
-  margin-right: 6px;
-  transition: 1s;
-}
-#socialWebs:hover {
-  margin-bottom: 20px;
-  padding-top: -40px;
-  font-size: 60px;
-  color: #ffd12b;
-}
-
 #deleteIcon {
   position: absolute;
   left: 93.2%;
@@ -290,5 +162,13 @@ h3 {
   color: aliceblue !important;
   margin-bottom: 0px;
   padding-top: 3px;
+}
+
+a:link,
+a:visited,
+a:active {
+  color: rgb(229, 155, 27);
+  background-color: transparent;
+  text-decoration: none;
 }
 </style>

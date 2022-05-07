@@ -48,20 +48,11 @@
       </div>
     </div>
   </article>
-  <footer class="py-4 bg-dark text-white">
-    <small>Copyright &copy; 2022 - TopHandler.S.L</small>
-  </footer>
+
 </template>
 
    <style>
-footer {
-  color: white;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  font-size: 15px;
-}
+
 body {
   width: 100vw;
   position: fixed;
@@ -114,7 +105,7 @@ a > img {
 }
 
 .card {
-  margin-top: 50px;
+  margin-top: 80px;
   padding: 20px;
   margin-left: 25px;
   padding-left: 25px;
@@ -124,7 +115,7 @@ a > img {
 
 .container {
   margin-top: 80px;
-  left: 35%;
+  margin-left: 35%;
   position: absolute;
 }
 
@@ -188,70 +179,99 @@ i:hover {
   font-size: 60px;
   color: #ffd12b;
 }
+
+@media (max-width: 1150px) {
+  .container{
+    margin-left: 20%;
+  }
+}
+
+@media (max-width: 900px) {
+  .container{
+    margin-left: 15%;
+  }
+}
+  @media (max-width: 750px) {
+  .container{
+    margin-left: 10%;
+  }
+}
+
+  @media (max-width: 650px) {
+  .container{
+    margin-left: 5%;
+  }
+}
+
+  @media (max-width: 500px) {
+  .container{
+    margin-left: 0;
+  }
+}
 </style>
 
 <script>
-import axios from "axios";
-import Swal from "sweetalert2";
+// import axios from "axios";
+// import Swal from "sweetalert2";
 
-export default {
-  data: () => ({
-    username: "",
-    password: "",
-  }),
-  methods: {
-    login() {
-      console.log(this.username);
-      console.log(this.password);
+// export default {
+//   data: () => ({
+//     username: "",
+//     password: "",
+//   }),
+//   methods: {
+//     login() {
+//       console.log(this.username);
+//       console.log(this.password);
 
-      axios
-        .post(
-          "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-            },
-            request: 1,
-            username: this.username,
-            password: this.password,
-          }
-        )
-        .then(function (response) {
-          console.log(response);
-          console.log(JSON.stringify(response.data));
+//       axios
+//         .post(
+//           "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
+//           {
+//             headers: {
+//               "Access-Control-Allow-Origin": "*",
+//             },
+//             request: 1,
+//             username: this.username,
+//             password: this.password,
+//           }
+//         )
+//         .then(function (response) {
+//           console.log(response);
+//           console.log(JSON.stringify(response.data));
 
-          if (response.data[0].status == 1) {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener("mouseenter", Swal.stopTimer);
-                toast.addEventListener("mouseleave", Swal.resumeTimer);
-              },
-            });
+//           if (response.data[0].status == 1) {
+//             const Toast = Swal.mixin({
+//               toast: true,
+//               position: "top-end",
+//               showConfirmButton: false,
+//               timer: 3000,
+//               timerProgressBar: true,
+//               didOpen: (toast) => {
+//                 toast.addEventListener("mouseenter", Swal.stopTimer);
+//                 toast.addEventListener("mouseleave", Swal.resumeTimer);
+//               },
+//             });
 
-            Toast.fire({
-              icon: "success",
-              title: "Inicio de sesión correcto",
-            });
-            setTimeout(() => {
-              window.location = "users";
-            }, 2000);
-          } else {
-            Swal.fire(
-              "No se pudo iniciar sesión",
-              "Usuario o contraseña incorrectos",
-              "error"
-            );
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
-  },
-};
+//             Toast.fire({
+//               icon: "success",
+//               title: "Inicio de sesión correcto",
+//             });
+//             setTimeout(() => {
+//               window.location = "users";
+//             }, 2000);
+//           } else {
+//             Swal.fire(
+//               "No se pudo iniciar sesión",
+//               "Usuario o contraseña incorrectos",
+//               "error"
+//             );
+//           }
+//         })
+//         .catch(function (error) {
+//           console.log(error);
+//         });
+//     },
+//   },
+// };
 </script>

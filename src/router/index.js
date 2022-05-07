@@ -28,7 +28,15 @@ const routes = [{
 
         component: () =>
             import ('../views/UsersApp.vue')
+    },
+    {
+        path: '/detail',
+        name: 'detail',
+
+        component: () =>
+            import ('../views/DetailUsers.vue')
     }
+
 ]
 
 const router = createRouter({
