@@ -1,5 +1,5 @@
 <template>
-    <nav id="app" class="container-fluid">
+  <nav id="app" class="container-fluid">
     <div>
       <router-link to="/" id="homeIcon">
         <a class="navbar-brand" href="">
@@ -9,6 +9,9 @@
     </div>
 
     <ul class="nav nav-tabs justify-content-end mb-3">
+      <li class="nav-item">
+        <a class="nav-link" id="separator" href=""></a>
+      </li>
       <router-link to="/">
         <a class="nav-link" href="">Home</a>
       </router-link>
@@ -16,8 +19,11 @@
         <a class="nav-link active" href="">Users</a>
       </router-link>
       <li class="nav-item">
-        <a class="nav-link" href="">Register</a>
+        <router-link to="/register">
+          <a class="nav-link" href="">Register</a>
+        </router-link>
       </li>
+
       <li class="nav-item">
         <router-link to="/">
           <a class="nav-link" href="">Log Out</a>
@@ -33,18 +39,21 @@
         <a class="nav-link hiddenNav" href=""></a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" id="separatorTwo" href="" aria-disabled="true"></a>
+      </li>
+      <li class="nav-item boxIcoOne">
         <a class="navbar-brand" href="https://es-es.facebook.com/">
-          <i class="fa-brands fa-facebook-square" id="socialWebs"></i>
+          <i class="fa-brands fa-facebook-square"></i>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item boxIcoTwo">
         <a class="navbar-brand" href="https://www.instagram.com/">
-          <i class="fa-brands fa-instagram-square" id="socialWebs"></i>
+          <i class="fa-brands fa-instagram-square"></i>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item boxIcoThree">
         <a class="navbar-brand" href="https://twitter.com/i/flow/login">
-          <i class="fa-brands fa-twitter-square" id="socialWebs"></i>
+          <i class="fa-brands fa-twitter-square"></i>
         </a>
       </li>
     </ul>
@@ -53,8 +62,8 @@
 
 <script>
 export default {
-name: "nav-logIn",
-}
+  name: "nav-logIn",
+};
 </script>
 
 <style>
@@ -159,20 +168,5 @@ i:hover {
     width: 10px;
     height: 10px;
   }
-
 }
-
-#socialWebs {
-  font-size: 45px;
-  color: #f4a20a;
-  margin-right: 6px;
-  transition: 1s;
-}
-#socialWebs:hover {
-  margin-bottom: 20px;
-  padding-top: -40px;
-  font-size: 60px;
-  color: #ffd12b;
-}
-
 </style>

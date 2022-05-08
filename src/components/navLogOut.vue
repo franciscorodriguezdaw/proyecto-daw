@@ -164,20 +164,5 @@ i:hover {
     width: 10px;
     height: 10px;
   }
-
 }
-
-#socialWebs {
-  font-size: 45px;
-  color: #f4a20a;
-  margin-right: 6px;
-  transition: 1s;
-}
-#socialWebs:hover {
-  margin-bottom: 20px;
-  padding-top: -40px;
-  font-size: 60px;
-  color: #ffd12b;
-}
-
 </style>

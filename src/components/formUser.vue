@@ -1,6 +1,6 @@
 <template>
   <form class="container contForm">
-    <div class="mb-3 col-9 rowInput">
+    <div class="mb-2 col-9 rowInput">
       <label for="userWeb" class="form-label">Usuario de plataforma</label>
       <input
         type="text"
@@ -14,25 +14,26 @@
       </div>
     </div>
 
-    <div class="mb-3 col-9 rowInput">
+    <div class="mb-2 col-9 rowInput">
       <label for="avatar" class="form-label"
         >Seleccione su foto de pérfil</label
       >
       <input class="form-control" type="file" id="avatar" name="avatar" />
     </div>
 
-    <div class="mb-3 col-9 rowInput">
+    <div class="mb-2 col-9 rowInput">
       <label for="name" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="name" name="name" />
     </div>
 
-    <div class="mb-3 col-9 rowInput">
+    <div class="mb-2 col-9 rowInput">
       <label for="surname" class="form-label">Apellidos</label>
       <input type="surname" class="form-control" id="surname" />
     </div>
 
-    <div class="mb-3 col-9 rowInput">
-      <select class="form-select">
+    <div class="mb-2 col-9 rowInput">
+      <label for="selectWork">Seleccione su Labor en la Empresa</label>
+      <select class="form-select" id="selectWork" name="selectWork">
         <option selected>Seleccione su labor en la empresa</option>
         <option>Lorem ipsum</option>
         <option>Ipsum Lorem</option>
@@ -40,39 +41,46 @@
       </select>
     </div>
 
-    <div class="mb-3 col-9 rowInput">
+    <div class="mb-4 col-9 rowInput">
+      <label for="workday" class="form-label">Jornada Laboral</label>
+      <br />
+      <label for="workday" class="form-control-inline">Hora de Entrada </label>
+      <input type="time" class="form-control-inline" id="workday" name="checkInTime" />
+      <label for="workday" class="form-control-inline">Hora de Salida </label>
+      <input
+        type="time"
+        class="form-control-inline"
+        id="workday"
+        name="departureTime"
+      />
+    </div>
+
+    <div class="mb-4 col-9 rowInput">
       <label for="salary" class="form-label">Salario</label>
-      <input type="number" step="10" class="form-control" id="salary" />
+      <input type="number" step="10" min="0" class="form-control" id="salary" />
 
       <div class="form-check form-check-inline mt-4 firstCheck">
         <input
           class="form-check-input"
           type="radio"
           name="workShift"
-          id="month"
+          id="anual"
           checked
         />
-        <label class="form-check-label" for="month"> Mensual </label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="workShift"
-          id="week"
-        />
-        <label class="form-check-label" for="week"> Semanal </label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="workShift"
-          id="anual"
-        />
         <label class="form-check-label" for="anual"> Anual </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="workShift"
+          id="salTime"
+          checked
+        />
+        <label class="form-check-label" for="salTime">
+          Salario por Unidad de Tiempo</label
+        >
       </div>
     </div>
 
@@ -88,7 +96,7 @@
       ></textarea>
     </div>
 
-    <div class="mb-3 col-9 form-check">
+    <div class="mb-2 col-9 form-check">
       <input
         type="checkbox"
         class="form-check-input"
@@ -101,10 +109,8 @@
       >
     </div>
 
-    <div class="mb-3 col-8 form-check" id="confirm">
-      <button type="submit" class="btn btn-primary">
-        Crear Nuevo Empleado
-      </button>
+    <div class="mb-2 col-8 form-check" id="confirm">
+      <button type="submit" class="btn btn-primary">Confirmar Empleado</button>
     </div>
   </form>
 </template>
@@ -122,11 +128,13 @@ export default {
   padding: 70px;
   padding-top: 40px;
   padding-left: 8%;
+  border-radius: 30px;
 }
 form > .rowInput {
   background-color: #e8ac3ca5;
   padding: 3%;
   padding-right: 15%;
+  border-radius: 5px;
 }
 
 form {
@@ -182,5 +190,20 @@ button[type="submit"]:hover {
 
 .form-check-inline {
   font-size: 18px;
+}
+
+label[for=workday]:nth-child(3), label[for=workday]:nth-child(5){
+    font-size: 18px;
+    padding: 15px;
+}
+
+label[for=workday]:nth-child(3){
+ margin-left: -2%;
+}
+
+input[type=time]{
+  margin-right: 4%;
+  width: 22%;
+  height: 40px;
 }
 </style>
