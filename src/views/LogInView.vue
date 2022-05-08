@@ -211,67 +211,67 @@ i:hover {
 </style>
 
 <script>
-// import axios from "axios";
-// import Swal from "sweetalert2";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-// export default {
-//   data: () => ({
-//     username: "",
-//     password: "",
-//   }),
-//   methods: {
-//     login() {
-//       console.log(this.username);
-//       console.log(this.password);
+export default {
+  data: () => ({
+    username: "",
+    password: "",
+  }),
+  methods: {
+    login() {
+      console.log(this.username);
+      console.log(this.password);
 
-//       axios
-//         .post(
-//           "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
-//           {
-//             headers: {
-//               "Access-Control-Allow-Origin": "*",
-//             },
-//             request: 1,
-//             username: this.username,
-//             password: this.password,
-//           }
-//         )
-//         .then(function (response) {
-//           console.log(response);
-//           console.log(JSON.stringify(response.data));
+      axios
+        .post(
+          "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+            request: 1,
+            username: this.username,
+            password: this.password,
+          }
+        )
+        .then(function (response) {
+          console.log(response);
+          console.log(JSON.stringify(response.data));
 
-//           if (response.data[0].status == 1) {
-//             const Toast = Swal.mixin({
-//               toast: true,
-//               position: "top-end",
-//               showConfirmButton: false,
-//               timer: 3000,
-//               timerProgressBar: true,
-//               didOpen: (toast) => {
-//                 toast.addEventListener("mouseenter", Swal.stopTimer);
-//                 toast.addEventListener("mouseleave", Swal.resumeTimer);
-//               },
-//             });
+          if (response.data[0].status == 1) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
 
-//             Toast.fire({
-//               icon: "success",
-//               title: "Inicio de sesión correcto",
-//             });
-//             setTimeout(() => {
-//               window.location = "users";
-//             }, 2000);
-//           } else {
-//             Swal.fire(
-//               "No se pudo iniciar sesión",
-//               "Usuario o contraseña incorrectos",
-//               "error"
-//             );
-//           }
-//         })
-//         .catch(function (error) {
-//           console.log(error);
-//         });
-//     },
-//   },
-// };
+            Toast.fire({
+              icon: "success",
+              title: "Inicio de sesión correcto",
+            });
+            setTimeout(() => {
+              window.location = "users";
+            }, 2000);
+          } else {
+            Swal.fire(
+              "No se pudo iniciar sesión",
+              "Usuario o contraseña incorrectos",
+              "error"
+            );
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>

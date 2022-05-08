@@ -69,6 +69,7 @@ function editUser($id, $username, $name, $surname, $password, $picture = null)
 
     return $stmt->execute();
 }
+
 //eliminar
 function deleteUserById($id)
 {
@@ -119,18 +120,21 @@ function getUserById($id)
 
 function getUsers()
 {
+    $users = [];
+
     $pdo = Connection::getInstance();
 
     $sql = "SELECT * FROM `user`";
 
     $stmt = $pdo->prepare($sql);
 
-    $stmt->bindParam(1, $id);
-
     $stmt->execute();
 
-    $row = $stmt->fetch();
-    return $row;
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $users[] = $row;
+    }
+
+    return $users;
 }
 
 function getUserJobById($id)

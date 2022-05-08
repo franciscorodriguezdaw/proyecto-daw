@@ -11,10 +11,10 @@
           </p>
           <p class="card-text moreAbUser">
             <router-link to="/detail">
-            <a href="">
-              Sus detalles
-              <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
-            </a>
+              <a href="">
+                Sus detalles
+                <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
+              </a>
             </router-link>
           </p>
         </div>
@@ -45,6 +45,11 @@
 <script>
 import FooterPersonal from "../components/footer.vue";
 import NavLogIn from "../components/navLogIn.vue";
+import axios from "axios";
+
+axios
+  .get("http://localhost/dashboard/proyecto-daw/src/backend/login.php")
+  .then((response) => console.log(response.data.users));
 
 export default {
   name: "App",
