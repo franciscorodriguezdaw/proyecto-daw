@@ -10,8 +10,12 @@ $array["users"] = [];
 
 foreach ($users as $key => $user) {
     $item = array(
+        'id' => $user['id'],
+        'name' => $user['name'],
+        'surname' => $user['surname'],
         'username' => $user['username'],
-        'password' => $user['password']
+        'password' => $user['password'],
+        'picture' => base64_encode($user['picture']),
     );
     $array["users"][] = $item;
 }

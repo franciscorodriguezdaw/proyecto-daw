@@ -1,27 +1,29 @@
 <?php
 
 include "functions.php";
-include "cors.php";
+// include "cors.php";
 
-cors();
+// cors();
 
 $data = json_decode(file_get_contents("php://input"));
 
-$request = $data->request;
+var_dump($data);
 
-if ($request == 1) {
-    $username = $data->username;
-    $password = $data->password;
+// $request = $data->request;
 
-    $user = getUserByCredentials($username, $password);
+// if ($request == 1) {
+//     $username = $data->username;
+//     $password = $data->password;
 
-    if ($user) {
-        $response[] = array('status' => 1);
-    } else {
-        $response[] = array('status' => 0);
-    }
-    login($data->username, $data->password);
-    echo json_encode($response);
+//     $user = getUserByCredentials($username, $password);
 
-    exit;
-}
+//     if ($user) {
+//         $response[] = array('status' => 1);
+//     } else {
+//         $response[] = array('status' => 0);
+//     }
+//     login($data->username, $data->password);
+//     echo json_encode($response);
+
+//     exit;
+// }

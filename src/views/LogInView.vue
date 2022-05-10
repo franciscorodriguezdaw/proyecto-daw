@@ -48,11 +48,9 @@
       </div>
     </div>
   </article>
-
 </template>
 
    <style>
-
 body {
   width: 100vw;
   position: fixed;
@@ -181,30 +179,30 @@ i:hover {
 }
 
 @media (max-width: 1150px) {
-  .container{
+  .container {
     margin-left: 20%;
   }
 }
 
 @media (max-width: 900px) {
-  .container{
+  .container {
     margin-left: 15%;
   }
 }
-  @media (max-width: 750px) {
-  .container{
+@media (max-width: 750px) {
+  .container {
     margin-left: 10%;
   }
 }
 
-  @media (max-width: 650px) {
-  .container{
+@media (max-width: 650px) {
+  .container {
     margin-left: 5%;
   }
 }
 
-  @media (max-width: 500px) {
-  .container{
+@media (max-width: 500px) {
+  .container {
     margin-left: 0;
   }
 }
@@ -221,26 +219,20 @@ export default {
   }),
   methods: {
     login() {
-      console.log(this.username);
-      console.log(this.password);
+      let logged = false;
+      let username = this.username;
+      let password = this.password;
 
       axios
-        .post(
-          "http://localhost/dashboard/proyecto-daw/src/backend/test01.php",
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-            },
-            request: 1,
-            username: this.username,
-            password: this.password,
-          }
-        )
+        .get("http://localhost/dashboard/proyecto-daw/src/backend/login.php")
         .then(function (response) {
-          console.log(response);
-          console.log(JSON.stringify(response.data));
+          response.data.users.forEach((user) => {
+            if (user.username == username && user.password == password) {
+              logged = true;
+            }
+          });
 
-          if (response.data[0].status == 1) {
+          if (response.status == 200 && logged) {
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",
