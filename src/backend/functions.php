@@ -2,36 +2,10 @@
 
 include "connection.php";
 
-// createUser("franlever", "Fran2", "Rodriguez2", "ANHAAAAAA");
+// createUser("franlever", "Fran", "Rodriguez", "AsR-8w4T$_QB");
 // echo login("franlever", "ANHAAAAAA");
 // showUsers();
 
-
-// mostrar todos los usuarios en una tabla
-function showUsers()
-{
-    $pdo = Connection::getInstance();
-    $sql = "SELECT * FROM user";
-    $stmt = $pdo->query($sql);
-    while ($row = $stmt->fetch()) {
-        $image = base64_encode($row['picture']);
-
-?>
-        <table>
-            <tr>
-                <td>
-                    <h1><?php echo $row["name"] . " " . $row["surname"] ?></h1>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="data:image/png;base64,<?php echo $image ?>">
-                </td>
-            </tr>
-        </table>
-<?php
-    }
-}
 
 //crear
 function createUser($username, $name, $surname, $password, $picture = null)

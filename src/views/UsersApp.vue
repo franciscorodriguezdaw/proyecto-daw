@@ -1,10 +1,10 @@
 <template>
   <nav-logIn></nav-logIn>
   <article class="container">
-    <div class="card">
+    <div class="card" v-for="user in users" v-bind:key="user.id">
       <div class="row">
         <div class="col-6 bodyUser">
-          <h3 class="card-text">Title</h3>
+          <h3 class="card-text">{{ user.name }}</h3>
           <p class="card-text">
             With supporting text below as a natural lead-in to additional
             content.
@@ -12,8 +12,8 @@
           <p class="card-text moreAbUser">
             <router-link to="/detail">
               <a href="">
-                Sus detalles
-                <img src="../assets/buscando.png" alt="error_imagen_busqueda" />
+                Detalles
+                <img src="../assets/buscando.png" alt="Buscar" />
               </a>
             </router-link>
           </p>
@@ -22,14 +22,13 @@
 
         <div class="col cardUser" id="imgUser">
           <img
-            width="100px"
-            height="100px"
-            src="../assets/perfil-del-usuario.png"
-            alt="error_imagen_usuario"
+            class="profilePic"
+            :src="'data:image/jpeg;base64,'+user.picture"
+            alt="Foto de perfil"
           />
         </div>
         <div class="col cardUser" id="nameUser">
-          <p>Usuario Cualquiera</p>
+          <p>{{ user.name + " " + user.surname }}</p>
           <p>Laburo</p>
         </div>
         <div class="ghost"></div>
@@ -47,20 +46,31 @@ import FooterPersonal from "../components/footer.vue";
 import NavLogIn from "../components/navLogIn.vue";
 import axios from "axios";
 
-axios
-  .get("http://localhost/dashboard/proyecto-daw/src/backend/login.php")
-  .then((response) => console.log(response.data.users));
-
 export default {
   name: "App",
   components: {
     FooterPersonal,
     NavLogIn,
   },
+  data() {
+    return { users: [] };
+  },
+  created() {
+    axios
+      .get("http://localhost/dashboard/proyecto-daw/src/backend/userList.php")
+      .then((response) => {
+        this.users = response.data.users;
+        console.log(this.users);
+      });
+  },
 };
 </script>
 
 <style>
+.profilePic {
+  width: 120px;
+  height: 120px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
