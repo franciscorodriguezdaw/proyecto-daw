@@ -64,10 +64,10 @@
           class="form-check-input"
           type="radio"
           name="workShift"
-          id="anual"
+          id="month"
           checked
         />
-        <label class="form-check-label" for="anual"> Anual </label>
+        <label class="form-check-label" for="month"> Mensual </label>
       </div>
 
       <div class="form-check form-check-inline">

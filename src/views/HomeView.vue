@@ -1,7 +1,6 @@
 <template>
-
-<nav-logOut></nav-logOut>  
-<article class="container">
+  <nav-logOut></nav-logOut>
+  <article class="container">
     <div class="card">
       <div class="row">
         <div class="col col-6" id="imgMain">
@@ -63,6 +62,15 @@ export default {
     FooterPersonal,
     NavLogOut,
   },
+
+  mounted() {
+    if (localStorage.getItem("reloaded")) {
+      localStorage.removeItem("reloaded");
+    } else {
+      localStorage.setItem("reloaded", "1");
+      location.reload();
+    }
+  },
 };
 </script>
 
@@ -112,12 +120,9 @@ export default {
   background-color: #272c2c;
 }
 
-
 @media (max-width: 750px) {
-
   #imgMain {
     display: none;
   }
 }
-
 </style>

@@ -21,11 +21,13 @@
         <div class="col-1 bodyUser"></div>
 
         <div class="col cardUser" id="imgUser">
-          <img
-            class="profilePic"
-            :src="'data:image/jpeg;base64,'+user.picture"
-            alt="Foto de perfil"
-          />
+          <router-link to="/detail">
+            <img
+              class="profilePic"
+              :src="'data:image/jpeg;base64,' + user.picture"
+              alt="Foto de perfil"
+            />
+          </router-link>
         </div>
         <div class="col cardUser" id="nameUser">
           <p>{{ user.name + " " + user.surname }}</p>
@@ -64,16 +66,16 @@ export default {
       });
   },
   mounted() {
-    if (localStorage.getItem('reloaded')) {
-        // The page was just reloaded. Clear the value from local storage
-        // so that it will reload the next time this page is visited.
-        localStorage.removeItem('reloaded');
+    if (localStorage.getItem("reloaded")) {
+      // The page was just reloaded. Clear the value from local storage
+      // so that it will reload the next time this page is visited.
+      localStorage.removeItem("reloaded");
     } else {
-        // Set a flag so that we know not to reload the page twice.
-        localStorage.setItem('reloaded', '1');
-        location.reload();
+      // Set a flag so that we know not to reload the page twice.
+      localStorage.setItem("reloaded", "1");
+      location.reload();
     }
-}
+  },
 };
 </script>
 
@@ -182,6 +184,7 @@ h3 {
   width: 7%;
   font-size: 30px;
   padding: 4px;
+  min-width: 30px;
 }
 
 #deleteIcon:hover {
@@ -196,5 +199,22 @@ a:active {
   color: rgb(229, 155, 27);
   background-color: transparent;
   text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+  .bodyUser {
+    display: none;
+  }
+
+  .cardUser,
+  .row {
+    padding: 0px;
+  }
+}
+
+@media (max-width: 500px) {
+  #deleteIcon {
+    left: 90.2%;
+  }
 }
 </style>
