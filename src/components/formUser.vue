@@ -1,6 +1,6 @@
 <template>
   <form class="container contForm">
-    <div class="mb-2 col-9 rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="userWeb" class="form-label">Usuario de plataforma</label>
       <input
         type="text"
@@ -14,24 +14,24 @@
       </div>
     </div>
 
-    <div class="mb-2 col-9 rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="avatar" class="form-label"
         >Seleccione su foto de pérfil</label
       >
       <input class="form-control" type="file" id="avatar" name="avatar" />
     </div>
 
-    <div class="mb-2 col-9 rowInput">
+    <div class="mb-2 col-md-7 col-xs-12  rowInput">
       <label for="name" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="name" name="name" />
     </div>
 
-    <div class="mb-2 col-9 rowInput">
+    <div class="mb-2 col-md-7 col-xs-12  rowInput">
       <label for="surname" class="form-label">Apellidos</label>
       <input type="surname" class="form-control" id="surname" />
     </div>
 
-    <div class="mb-2 col-9 rowInput">
+    <div class="mb-2 col-md-7 col-xs-12  rowInput">
       <label for="selectWork">Seleccione su Labor en la Empresa</label>
       <select class="form-select" id="selectWork" name="selectWork">
         <option selected>Seleccione su labor en la empresa</option>
@@ -41,11 +41,16 @@
       </select>
     </div>
 
-    <div class="mb-4 col-9 rowInput">
+    <div class="mb-4 col-md-7 col-xs-12  rowInput">
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input type="time" class="form-control-inline" id="workday" name="checkInTime" />
+      <input
+        type="time"
+        class="form-control-inline"
+        id="workday"
+        name="checkInTime"
+      />
       <label for="workday" class="form-control-inline">Hora de Salida </label>
       <input
         type="time"
@@ -55,7 +60,7 @@
       />
     </div>
 
-    <div class="mb-4 col-9 rowInput">
+    <div class="mb-4 col-md-7 col-xs-12  rowInput">
       <label for="salary" class="form-label">Salario</label>
       <input type="number" step="10" min="0" class="form-control" id="salary" />
 
@@ -96,12 +101,13 @@
       ></textarea>
     </div>
 
-    <div class="mb-2 col-9 form-check">
+    <div class="mb-2 col-md-5 col-xs-12  form-check" id="checkYes">
       <input
         type="checkbox"
         class="form-check-input"
         id="agreeRead"
         name="agreeRead"
+        required
       />
       <label class="form-check-label" for="agreeRead"
         >HE LEÍDO Y ACEPTO LOS TÉRMINOS LOS TÉRMINOS Y CONDICIOONES DE LA PÁGINA
@@ -192,18 +198,37 @@ button[type="submit"]:hover {
   font-size: 18px;
 }
 
-label[for=workday]:nth-child(3), label[for=workday]:nth-child(5){
-    font-size: 18px;
-    padding: 15px;
+label[for="workday"]:nth-child(3),
+label[for="workday"]:nth-child(5) {
+  font-size: 18px;
+  padding: 15px;
 }
 
-label[for=workday]:nth-child(3){
- margin-left: -2%;
+label[for="workday"]:nth-child(3) {
+  margin-left: -2%;
 }
 
-input[type=time]{
+input[type="time"] {
   margin-right: 4%;
   width: 22%;
   height: 40px;
+}
+
+@media (max-width: 850px) {
+#confirm>button{
+  padding-top: 1px;
+  height: 60px;
+}
+
+#checkYes{
+  margin-left: 0px;
+}
+}
+
+@media (max-width: 1100px) {
+
+#checkYes{
+  margin-left: 5px;
+}
 }
 </style>

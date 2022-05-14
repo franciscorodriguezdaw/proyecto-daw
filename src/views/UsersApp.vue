@@ -3,7 +3,18 @@
   <article class="container">
     <div class="card" v-for="user in users" v-bind:key="user.id">
       <div class="row">
-        <div class="col-6 bodyUser">
+        <div class="col-2 bodyBotton">
+          <div class="card selectUpd" id="checkIn">
+            <button type="button" class="btn btn-warning">Check In</button>
+          </div>
+          <div class="card selectUpd" id="checkOut">
+            <button type="button" class="btn btn-danger">Check Out</button>
+          </div>
+          <div class="card selectUpd" id="pot">
+            <button type="button" class="btn btn-outline-dark">BOTE</button>
+          </div>
+        </div>
+        <div class="col-5 bodyUser">
           <h3 class="card-text">{{ user.name }}</h3>
           <p class="card-text">
             With supporting text below as a natural lead-in to additional
@@ -18,9 +29,8 @@
             </router-link>
           </p>
         </div>
-        <div class="col-1 bodyUser"></div>
 
-        <div class="col cardUser" id="imgUser">
+        <div class="col col-xs-1 cardUser" id="imgUser">
           <router-link to="/detail">
             <img
               class="profilePic"
@@ -65,7 +75,6 @@ export default {
         console.log(this.users);
       });
   },
-  
 };
 </script>
 
@@ -155,6 +164,10 @@ h3 {
   background: #f2eeee80;
 }
 
+.bodyBotton {
+  background: #f2eeee80;
+}
+
 .card {
   padding: 0;
   padding-left: 12px;
@@ -191,20 +204,102 @@ a:active {
   text-decoration: none;
 }
 
-@media (max-width: 1000px) {
+.selectUpd {
+  padding: 0px !important;
+  float: left;
+  margin-left: 10px;
+  border: none;
+}
+
+.selectUpd > button {
+  height: 33px;
+}
+
+#checkIn {
+  width: 100px;
+  margin-top: 34px !important;
+}
+
+#checkOut {
+  width: 110px;
+  margin-top: 15px !important;
+}
+
+#pot {
+  width: 80px;
+  margin-top: 15px !important;
+}
+
+.bodyBotton {
+  border-right: 2px solid #806b2d6c;
+}
+
+.btn-warning {
+  background-color: rgb(249, 190, 89);
+  border: 2px solid #806b2d6c;
+  transition: 1s ease;
+}
+
+.btn-warning:hover {
+  background-color: rgb(220, 168, 79);
+  border: 1px solid #000000;
+  color: rgb(55, 52, 52);
+}
+
+.btn-danger {
+  background-color: rgb(231, 151, 139);
+  border: 2px solid #806b2d6c;
+  transition: 1s ease;
+}
+
+.btn-danger:hover {
+  background-color: rgb(249, 199, 191);
+  border: 1px solid #000000;
+  color: rgb(55, 52, 52);
+  font-weight: bolder;
+}
+
+.btn-outline-dark {
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #806b2d6c;
+  transition: 1s ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: rgb(232, 247, 246);
+  border: 1px solid #000000;
+  color: rgb(55, 52, 52);
+  font-weight: bolder;
+}
+
+@media (max-width: 1400px) {
   .bodyUser {
     display: none;
   }
 
-  .cardUser, .row{
+  .cardUser,
+  .row {
     padding: 0px;
   }
 }
 
 @media (max-width: 500px) {
+  #deleteIcon {
+    left: 90.2%;
+  }
 
-#deleteIcon {
-  left: 90.2%;
+  #imgUser{
+  display: none;
+  }
+
+  #nameUser{
+    padding-left: 20px;
+  }
 }
+
+@media (max-width: 1400px) {
+  .bodyBotton {
+    min-width: 150px;
+  }
 }
 </style>
