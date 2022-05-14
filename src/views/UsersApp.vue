@@ -75,6 +75,15 @@ export default {
         console.log(this.users);
       });
   },
+  mounted() {
+    if (localStorage.getItem("reloaded")) {
+    
+      localStorage.removeItem("reloaded");
+    } else {
+      localStorage.setItem("reloaded", "1");
+      location.reload();
+    }
+  },
 };
 </script>
 

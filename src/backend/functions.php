@@ -3,16 +3,19 @@
 include "connection.php";
 
 // createUser("franlever", "Fran", "Rodriguez", "AsR-8w4T$_QB");
-// echo login("franlever", "ANHAAAAAA");
-// showUsers();
+// echo login("franlever", "AsR-8w4T$_QB");
+// getUsers();
+
+//ultimo valor -> id de empleado -> tiene que existir en la BD
+//addJobById(17, 150, 1739, 3);
 
 
-//crear
-function createUser($username, $name, $surname, $password, $picture = null)
+//crear empleado
+function createUser($username, $name, $surname, $password, $picture = null, $observations = null)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "INSERT INTO user (`username`, `name`, `surname`, `password`, `picture`) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO user (`username`, `name`, `surname`, `password`, `picture`, `observations`) VALUES (?, ?, ?, ?, ?, ?)";
 
     $stmt = $pdo->prepare($sql);
 
@@ -21,16 +24,17 @@ function createUser($username, $name, $surname, $password, $picture = null)
     $stmt->bindParam(3, $surname);
     $stmt->bindParam(4, $password);
     $stmt->bindParam(5, $picture);
+    $stmt->bindParam(5, $observations);
 
     return $stmt->execute();
 }
 
-//editar
+//editar empleado
 function editUser($id, $username, $name, $surname, $password, $picture = null)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "UPDATE `user` SET `username`=?,`name`=?,`surname`=?,`password`=?,`picture`=? WHERE `id`=?";
+    $sql = "UPDATE `user` SET `username`=?,`name`=?,`surname`=?,`password`=?,`picture`=?,`observations`=? WHERE `id`=?";
 
     $stmt = $pdo->prepare($sql);
 
@@ -39,7 +43,8 @@ function editUser($id, $username, $name, $surname, $password, $picture = null)
     $stmt->bindParam(3, $surname);
     $stmt->bindParam(4, $password);
     $stmt->bindParam(5, $picture);
-    $stmt->bindParam(6, $id);
+    $stmt->bindParam(6, $observations);
+    $stmt->bindParam(7, $id);
 
     return $stmt->execute();
 }
@@ -57,7 +62,7 @@ function deleteUserById($id)
 
     return $stmt->execute();
 }
-
+//obtener empleado por nombre de usuario y contraseña
 function getUserByCredentials($username, $password)
 {
     $pdo = Connection::getInstance();
@@ -76,6 +81,7 @@ function getUserByCredentials($username, $password)
     return $row;
 }
 
+//obtener empleado por id
 function getUserById($id)
 {
     $pdo = Connection::getInstance();
@@ -92,6 +98,7 @@ function getUserById($id)
     return $row;
 }
 
+//obtener usuarios
 function getUsers()
 {
     $users = [];
@@ -111,11 +118,12 @@ function getUsers()
     return $users;
 }
 
+//obtener trabajo por id de empleado
 function getUserJobById($id)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "SELECT `id`, `pot`, `salary`, `employee_ID` FROM `job` WHERE `employee_ID` = ?";
+    $sql = "SELECT `id`, `job`, `pot`, `salary`, `salary_type`, `employee_ID` FROM `job` WHERE `employee_ID` = ?";
 
     $stmt = $pdo->prepare($sql);
 
@@ -124,9 +132,26 @@ function getUserJobById($id)
     return $stmt->execute();
 }
 
+function addJobById($id, $pot, $salary, $employee_ID)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "INSERT INTO `job`(`id`, `job`,  `pot`, `salary`, `salary_type`, `employee_ID`) VALUES (?, ?, ?, ?)";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $id);
+    $stmt->bindParam(2, $pot);
+    $stmt->bindParam(3, $salary);
+    $stmt->bindParam(4, $employee_ID);
+
+    return $stmt->execute();
+}
+
 
 function login($username, $password)
 {
+    session_start();
     $logged = false;
     $pdo = Connection::getInstance();
     $sql = "SELECT * FROM user";
