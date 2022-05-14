@@ -10,14 +10,16 @@
 export default {
 name: "footer-personal"
 }
+
+
 </script>
 
 <style>
 footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
+  margin-top: 200px;
 }
 footer>div{
   font-size: 18px;
