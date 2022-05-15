@@ -3,7 +3,36 @@
   <article class="container">
     <div class="card" v-for="user in users" v-bind:key="user.id">
       <div class="row">
-        <div class="col-6 bodyUser">
+        <div class="col-2 bodyBotton">
+          <div class="card selectUpd" id="checkIn">
+            <button
+              type="button"
+              class="btn btn-warning"
+              @click="saveCheckTime()"
+            >
+              Check In
+            </button>
+          </div>
+          <div class="card selectUpd" id="checkOut">
+            <button
+              @click="saveDepartureTime()"
+              type="button"
+              class="btn btn-danger"
+            >
+              Check Out
+            </button>
+          </div>
+          <div class="card selectUpd" id="pot">
+            <button
+              @click="addPot()"
+              type="button"
+              class="btn btn-outline-dark"
+            >
+              BOTE
+            </button>
+          </div>
+        </div>
+        <div class="col-5 bodyUser">
           <h3 class="card-text">{{ user.name }}</h3>
           <p class="card-text">
             With supporting text below as a natural lead-in to additional
@@ -18,9 +47,8 @@
             </router-link>
           </p>
         </div>
-        <div class="col-1 bodyUser"></div>
 
-        <div class="col cardUser" id="imgUser">
+        <div class="col col-xs-1 cardUser" id="imgUser">
           <router-link to="/detail">
             <img
               class="profilePic"
@@ -38,6 +66,7 @@
             <p><b>Propina: </b>{{ user.pot }}</p>
           </span>
         </div>
+
         <div class="ghost"></div>
         <i
           class="fa-solid fa-xmark"
@@ -65,7 +94,10 @@ export default {
     NavLogIn,
   },
   data() {
-    return { users: [] };
+    return {
+      users: [],
+      checkInTime: 0,
+    };
   },
   methods: {
     deleteData(id) {
@@ -105,13 +137,76 @@ export default {
         this.users = response.data.users;
       });
   },
+  saveCheckTime() {
+    Swal.fire(
+      "Su Hora de Entrada al Trabajo",
+      "Ha sido registrado correctamente",
+      "success"
+    );
+    // axios
+    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php")
+    //   .then((response) => {
+    //     this.checkInTime = response.data.check_in_time;
+    //     console.log(this.checkInTime);
+    //   });
+  },
+
+  saveDepartureTime() {
+    Swal.fire(
+      "Su Hora de Salida al Trabajo",
+      "Ha sido registrado correctamente",
+      "success"
+    );
+
+    // axios
+    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php")
+    //   .then((response) => {
+    //     this.checkInTime = response.data.check_in_time;
+    //     console.log(this.checkInTime);
+    //   });
+  },
+
+  addPot() {
+    Swal.fire({
+      title: "Su bote del día",
+      input: "number",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+      showLoaderOnConfirm: true,
+      preConfirm: (login) => {
+        console.log(login);
+        // return fetch(`//api.github.com/users/${login}`)
+        //   .then(response => {
+        //     if (!response.ok) {
+        //       throw new Error(response.statusText)
+        //     }
+        //     return response.json()
+        //   })
+        //   .catch(error => {
+        //     Swal.showValidationMessage(
+        //       `Request failed: ${error}`
+        //     )
+        //   })
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      console.log(result);
+    });
+    // axios
+    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/addPot.php")
+    //   .then((response) => {
+    //     this.checkInTime = response.data.check_in_time;
+    //     console.log(this.checkInTime);
+    //   });
+  },
+
   mounted() {
     if (localStorage.getItem("reloaded")) {
-      // The page was just reloaded. Clear the value from local storage
-      // so that it will reload the next time this page is visited.
       localStorage.removeItem("reloaded");
     } else {
-      // Set a flag so that we know not to reload the page twice.
       localStorage.setItem("reloaded", "1");
       location.reload();
     }
@@ -191,10 +286,11 @@ export default {
   text-align: right;
 }
 
-#nameUser > p {
+#nameComp > p {
   margin-top: 20px;
   font-weight: bolder;
   text-align: left;
+  color: #000000;
 }
 
 h3 {
@@ -208,6 +304,10 @@ h3 {
 }
 
 .bodyUser {
+  background: #f2eeee80;
+}
+
+.bodyBotton {
   background: #f2eeee80;
 }
 
@@ -247,7 +347,75 @@ a:active {
   text-decoration: none;
 }
 
-@media (max-width: 1000px) {
+.selectUpd {
+  padding: 0px !important;
+  float: left;
+  margin-left: 10px;
+  border: none;
+}
+
+.selectUpd > button {
+  height: 33px;
+}
+
+#checkIn {
+  width: 100px;
+  margin-top: 34px !important;
+}
+
+#checkOut {
+  width: 110px;
+  margin-top: 15px !important;
+}
+
+#pot {
+  width: 80px;
+  margin-top: 15px !important;
+}
+
+.bodyBotton {
+  border-right: 2px solid #806b2d6c;
+}
+
+.btn-warning {
+  background-color: rgb(249, 190, 89);
+  border: 2px solid #806b2d6c;
+  transition: 1s ease;
+}
+
+.btn-warning:hover {
+  background-color: rgb(220, 168, 79);
+  border: 1px solid #000000;
+  color: rgb(55, 52, 52);
+}
+
+.btn-danger {
+  background-color: rgb(231, 151, 139);
+  border: 2px solid #806b2d6c;
+  transition: 1s ease;
+}
+
+.btn-danger:hover {
+  background-color: rgb(249, 199, 191);
+  border: 1px solid #000000;
+  color: rgb(55, 52, 52);
+  font-weight: bolder;
+}
+
+.btn-outline-dark {
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #806b2d6c;
+  transition: 1s ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: rgb(232, 247, 246);
+  border: 1px solid #000000;
+  color: rgb(55, 52, 52);
+  font-weight: bolder;
+}
+
+@media (max-width: 1400px) {
   .bodyUser {
     display: none;
   }
@@ -261,6 +429,20 @@ a:active {
 @media (max-width: 500px) {
   #deleteIcon {
     left: 90.2%;
+  }
+
+  #imgUser {
+    display: none;
+  }
+
+  #nameUser {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .bodyBotton {
+    min-width: 150px;
   }
 }
 </style>

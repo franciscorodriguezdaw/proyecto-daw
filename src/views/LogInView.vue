@@ -131,18 +131,19 @@ label {
   font-weight: bolder;
 }
 
-.btn {
+.button {
   color: #fff;
   margin-top: 40px;
+  margin-left: 20px;
   font-size: 16px;
   font-weight: bolder;
   background-color: #edaa6c;
   height: 60px;
-  width: 140px;
+  width: 240px;
   text-align: center;
 }
 
-.btn:hover {
+.button:hover {
   color: #000000;
   background-color: #fdaf1d;
 }
@@ -150,6 +151,8 @@ label {
 .card-header {
   background-color: #edaa6c;
   margin-top: 12px;
+  width: 100%;
+  margin-left: 5px;
 }
 
 .card-header > img {
@@ -158,10 +161,6 @@ label {
 
 .card-body {
   margin-right: 15px;
-}
-
-.button {
-  margin-right: 27%;
 }
 
 i {

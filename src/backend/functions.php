@@ -154,6 +154,48 @@ function addJobById($id, $pot, $salary, $employee_ID)
 }
 
 
+function updateCheckIn($id, $check_in_time)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "INSERT INTO `schedule`(`employee_ID`,`check_in_time`) VALUES (?, ?)";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $id);
+    $stmt->bindParam(2, $check_in_time);
+
+    return $stmt->execute();
+}
+
+function updateCheckOut($id, $departure_time)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "INSERT INTO `schedule`(`employee_ID`,`departure_time`) VALUES (?, ?)";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $id);
+    $stmt->bindParam(2, $departure_time);
+
+    return $stmt->execute();
+}
+
+function addPot($id, $pot)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "INSERT INTO `job`(`employee_ID`,`pot`) VALUES (?, ?)";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $id);
+    $stmt->bindParam(2, $pot);
+
+    return $stmt->execute();
+}
+
 function login($username, $password)
 {
     session_start();

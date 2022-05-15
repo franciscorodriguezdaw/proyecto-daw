@@ -105,7 +105,7 @@ export default {
   margin-bottom: 50px;
 }
 
-.btn {
+.botton {
   color: #343f3f;
   font-size: 16px;
   font-weight: bolder;
