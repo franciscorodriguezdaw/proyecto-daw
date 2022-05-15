@@ -5,13 +5,31 @@
       <div class="row">
         <div class="col-2 bodyBotton">
           <div class="card selectUpd" id="checkIn">
-            <button type="button" class="btn btn-warning">Check In</button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              @click="saveCheckTime()"
+            >
+              Check In
+            </button>
           </div>
           <div class="card selectUpd" id="checkOut">
-            <button type="button" class="btn btn-danger">Check Out</button>
+            <button
+              @click="saveDepartureTime()"
+              type="button"
+              class="btn btn-danger"
+            >
+              Check Out
+            </button>
           </div>
           <div class="card selectUpd" id="pot">
-            <button type="button" class="btn btn-outline-dark">BOTE</button>
+            <button
+              @click="addPot()"
+              type="button"
+              class="btn btn-outline-dark"
+            >
+              BOTE
+            </button>
           </div>
         </div>
         <div class="col-5 bodyUser">
@@ -40,9 +58,12 @@
           </router-link>
         </div>
         <div class="col cardUser" id="nameUser">
-          <p>{{ user.name + " " + user.surname }}</p>
-          <p>Laburo</p>
+          <router-link to="/detail" id="nameComp">
+            <p>{{ user.name + " " + user.surname }}</p>
+            <p>Laburo</p>
+          </router-link>
         </div>
+
         <div class="ghost"></div>
         <i class="fa-solid fa-xmark" id="deleteIcon"></i>
       </div>
@@ -57,6 +78,7 @@
 import FooterPersonal from "../components/footer.vue";
 import NavLogIn from "../components/navLogIn.vue";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default {
   name: "App",
@@ -65,8 +87,12 @@ export default {
     NavLogIn,
   },
   data() {
-    return { users: [] };
+    return {
+      users: [],
+      checkInTime: 0,
+    };
   },
+
   created() {
     axios
       .get("http://localhost/dashboard/proyecto-daw/src/backend/userList.php")
@@ -75,9 +101,74 @@ export default {
         console.log(this.users);
       });
   },
+  saveCheckTime() {
+    Swal.fire(
+      "Su Hora de Entrada al Trabajo",
+      "Ha sido registrado correctamente",
+      "success"
+    );
+    // axios
+    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php")
+    //   .then((response) => {
+    //     this.checkInTime = response.data.check_in_time;
+    //     console.log(this.checkInTime);
+    //   });
+  },
+
+  saveDepartureTime() {
+    Swal.fire(
+      "Su Hora de Salida al Trabajo",
+      "Ha sido registrado correctamente",
+      "success"
+    );
+
+    // axios
+    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php")
+    //   .then((response) => {
+    //     this.checkInTime = response.data.check_in_time;
+    //     console.log(this.checkInTime);
+    //   });
+  },
+
+  addPot() {
+    Swal.fire({
+      title: "Su bote del día",
+      input: "number",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+      showLoaderOnConfirm: true,
+      preConfirm: (login) => {
+        console.log(login);
+        // return fetch(`//api.github.com/users/${login}`)
+        //   .then(response => {
+        //     if (!response.ok) {
+        //       throw new Error(response.statusText)
+        //     }
+        //     return response.json()
+        //   })
+        //   .catch(error => {
+        //     Swal.showValidationMessage(
+        //       `Request failed: ${error}`
+        //     )
+        //   })
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      console.log(result);
+    });
+    // axios
+    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/addPot.php")
+    //   .then((response) => {
+    //     this.checkInTime = response.data.check_in_time;
+    //     console.log(this.checkInTime);
+    //   });
+  },
+
   mounted() {
     if (localStorage.getItem("reloaded")) {
-    
       localStorage.removeItem("reloaded");
     } else {
       localStorage.setItem("reloaded", "1");
@@ -153,10 +244,11 @@ export default {
   text-align: right;
 }
 
-#nameUser > p {
+#nameComp > p {
   margin-top: 20px;
   font-weight: bolder;
   text-align: left;
+  color: #000000;
 }
 
 h3 {
@@ -297,11 +389,11 @@ a:active {
     left: 90.2%;
   }
 
-  #imgUser{
-  display: none;
+  #imgUser {
+    display: none;
   }
 
-  #nameUser{
+  #nameUser {
     padding-left: 20px;
   }
 }
