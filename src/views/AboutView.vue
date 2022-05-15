@@ -63,7 +63,6 @@
       </div>
     </div>
   </article>
-
   <footer-personal></footer-personal>
 </template>
 
@@ -166,7 +165,7 @@ a > img {
 }
 
 .card {
-  margin-top: 70px;
+  margin-top: 30px;
   padding-left: 35px;
   padding-right: 35px;
 }
@@ -193,7 +192,6 @@ a > img {
 
 article {
   margin-top: 1.5%;
-  margin-bottom: 300px;
 }
 i {
   font-size: 45px;
