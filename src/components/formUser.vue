@@ -9,58 +9,83 @@
         name="userWeb"
         aria-describedby="userWeb"
       />
-      <div id="userWeb" class="form-text">
-        Acuerdate, seguramente sea tu nombre más tu apellido
+      <div id="recordatorio" class="form-text">
+        *El usuario será su primer nombre en minúsculas junto a su fecha de
+        nacimiento en formato dd/mm/aa
       </div>
+    </div>
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
+      <label for="userWeb" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        aria-describedby="userWeb"
+      />
+    </div>
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
+      <label for="userWeb" class="form-label">Repetir contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="repeatPassword"
+        name="repeatPassword"
+        aria-describedby="userWeb"
+      />
     </div>
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="avatar" class="form-label"
-        >Seleccione su foto de pérfil</label
+        >Seleccione su foto de perfil</label
       >
-      <input class="form-control" type="file" id="avatar" name="avatar" />
+      <input
+        type="file"
+        v-on:input="loadPicture($event)"
+        class="form-control"
+        id="avatar"
+        name="avatar"
+      />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12  rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput" id="pictureDiv">
+      <img id="picture" :src="image" alt="" />
+    </div>
+
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="name" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="name" name="name" />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12  rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="surname" class="form-label">Apellidos</label>
       <input type="surname" class="form-control" id="surname" />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12  rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="selectWork">Seleccione su Labor en la Empresa</label>
       <select class="form-select" id="selectWork" name="selectWork">
-        <option selected>Seleccione su labor en la empresa</option>
-        <option>Lorem ipsum</option>
-        <option>Ipsum Lorem</option>
-        <option>Araen</option>
+        <option selected hidden>Seleccione su labor en la empresa</option>
+        <option>Programador web</option>
+        <option>Administrador de sistemas</option>
+        <option>Científico de datos</option>
+        <option>Programador móvil</option>
+        <option>Auxiliar infórmatica</option>
+        <option>Tester técnico</option>
+        <option>Desarrollador de software</option>
       </select>
     </div>
 
-    <div class="mb-4 col-md-7 col-xs-12  rowInput">
+    <div class="mb-4 col-md-7 col-xs-12 rowInput">
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input
-        type="time"
-        class="form-control-inline"
-        id="workday"
-        name="checkInTime"
-      />
+      <input type="time" class="form-control-inline" name="checkInTime" />
       <label for="workday" class="form-control-inline">Hora de Salida </label>
-      <input
-        type="time"
-        class="form-control-inline"
-        id="workday"
-        name="departureTime"
-      />
+      <input type="time" class="form-control-inline" name="departureTime" />
     </div>
 
-    <div class="mb-4 col-md-7 col-xs-12  rowInput">
+    <div class="mb-4 col-md-7 col-xs-12 rowInput">
       <label for="salary" class="form-label">Salario</label>
       <input type="number" step="10" min="0" class="form-control" id="salary" />
 
@@ -81,7 +106,6 @@
           type="radio"
           name="workShift"
           id="salTime"
-          checked
         />
         <label class="form-check-label" for="salTime">
           Salario por Unidad de Tiempo</label
@@ -90,9 +114,7 @@
     </div>
 
     <div class="mb-4 rowInput">
-      <label for="moreInf" class="form-label"
-        >Cualquiera apreciación que se quiera dar del empleado</label
-      >
+      <label for="moreInf" class="form-label">Observaciones</label>
       <textarea
         class="form-control"
         id="moreInf"
@@ -101,7 +123,7 @@
       ></textarea>
     </div>
 
-    <div class="mb-2 col-md-5 col-xs-12  form-check" id="checkYes">
+    <div class="mb-2 col-md-5 col-xs-12 form-check" id="checkYes">
       <input
         type="checkbox"
         class="form-check-input"
@@ -116,14 +138,73 @@
     </div>
 
     <div class="mb-2 col-8 form-check" id="confirm">
-      <button type="submit" class="btn btn-primary">Confirmar Empleado</button>
+      <button @click="registerUser()" type="submit" class="btn btn-primary">
+        Confirmar Empleado
+      </button>
     </div>
   </form>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "form-user",
+  methods: {
+    registerUser() {
+      console.log(this.image);
+      axios
+        .post(
+          "http://localhost/dashboard/proyecto-daw/src/backend/registerUser.php",
+          {
+            method: "POST",
+            username: "fran",
+            name: "fran",
+            surname: "fran",
+            password: "fran",
+            picture: this.image,
+            observations: "fran",
+          }
+        )
+        .then(function (response) {
+          console.log(this.image);
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log("Error: " + e);
+        });
+    },
+    loadPicture: function (e) {
+      let extension = e.target.files[0].name.substr(
+        e.target.files[0].name.length - 3
+      );
+      if (
+        extension == "jpg" ||
+        extension == "png" ||
+        extension == "jpeg" ||
+        extension == "gif"
+      ) {
+        this.image = URL.createObjectURL(e.target.files[0]);
+      } else {
+        this.image =
+          "https://es.rescuedigitalmedia.com/wp-content/uploads/sites/7/2019/04/jpeg-and-jpg-file-download-black-icon-vector-37669571.jpg";
+      }
+    },
+  },
+  getBase64Image(img) {
+    let canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    let dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  },
+  data() {
+    return {
+      image:
+        "https://icons.iconarchive.com/icons/mahm0udwally/all-flat/256/User-icon.png",
+    };
+  },
 };
 </script>
 
@@ -138,13 +219,12 @@ export default {
 }
 form > .rowInput {
   background-color: #e8ac3ca5;
-  padding: 3%;
+  padding: 2%;
   padding-right: 15%;
   border-radius: 5px;
 }
 
 form {
-  margin-top: 60px;
   margin-bottom: 200px;
 }
 
@@ -187,7 +267,7 @@ button[type="submit"]:hover {
 }
 
 .rowInput > label {
-  font-size: 22px;
+  font-size: 16px;
 }
 
 #agreeRead {
@@ -213,22 +293,44 @@ input[type="time"] {
   width: 22%;
   height: 40px;
 }
+#recordatorio {
+  color: rgb(230, 5, 5);
+  font-size: 12px;
+}
+
+#pictureDiv {
+  height: 100%;
+  padding: 30px 6rem;
+}
+#pictureDiv > img {
+  width: 70%;
+  height: auto;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+}
 
 @media (max-width: 850px) {
-#confirm>button{
-  padding-top: 1px;
-  height: 60px;
-}
+  #confirm > button {
+    padding-top: 1px;
+    height: 60px;
+  }
 
-#checkYes{
-  margin-left: 0px;
-}
+  #checkYes {
+    margin-left: 0px;
+  }
+  #pictureDiv > img {
+    padding: 10px;
+    width: 10rem;
+  }
+  #pictureDiv {
+    padding: 10px 20%;
+  }
 }
 
 @media (max-width: 1100px) {
-
-#checkYes{
-  margin-left: 5px;
-}
+  #checkYes {
+    margin-left: 5px;
+  }
 }
 </style>

@@ -250,7 +250,7 @@ export default {
   border: 2px solid #806b2d6c;
   width: 80%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 20px;
   padding-left: 35px;
   padding-right: 35px;

@@ -24,7 +24,7 @@ function createUser($username, $name, $surname, $password, $picture = null, $obs
     $stmt->bindParam(3, $surname);
     $stmt->bindParam(4, $password);
     $stmt->bindParam(5, $picture);
-    $stmt->bindParam(5, $observations);
+    $stmt->bindParam(6, $observations);
 
     return $stmt->execute();
 }
