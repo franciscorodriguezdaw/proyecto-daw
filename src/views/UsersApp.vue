@@ -110,13 +110,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .post(
-              "http://localhost/dashboard/proyecto-daw/src/backend/deleteUser.php",
-              {
-                id: id,
-                method: "POST",
-              }
-            )
+            .delete("http://localhost:8080/api/" + id)
             .then(function (response) {
               Swal.fire("!Eliminado correctamente!", "", "success");
               console.log(response.data);
@@ -131,11 +125,9 @@ export default {
     },
   },
   created() {
-    axios
-      .get("http://localhost/dashboard/proyecto-daw/src/backend/userList.php")
-      .then((response) => {
-        this.users = response.data.users;
-      });
+    axios.get("http://localhost:8080/api/").then((response) => {
+      this.users = response.data.users;
+    });
   },
   saveCheckTime() {
     Swal.fire(

@@ -1,20 +1,17 @@
 <?php
 include "functions.php";
 include "cors.php";
-
 cors();
 
-$received_data = json_decode(file_get_contents("php://input"));
-
 if (createUser(
-    $received_data->username,
-    $received_data->name,
-    $received_data->surname,
-    $received_data->password,
-    $received_data->picture = null,
-    $received_data->observations = null
+    $_POST["username"],
+    $_POST["name"],
+    $_POST["surname"],
+    $_POST["password"],
+    $_POST["picture"],
+    $_POST["observations"]
 )) {
-    echo "Insertado correctamente";
+    echo json_encode(getUserByCredentials($_POST["username"], $_POST["password"]));
 } else {
     echo "ERROR: no se pudo insertar al usuario";
 }

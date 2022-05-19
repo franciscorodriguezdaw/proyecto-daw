@@ -139,7 +139,7 @@
 
     <div class="mb-2 col-8 form-check" id="confirm">
       <button @click="registerUser()" type="submit" class="btn btn-primary">
-        Confirmar Empleado
+        Crear Empleado
       </button>
     </div>
   </form>
@@ -153,18 +153,14 @@ export default {
     registerUser() {
       console.log(this.image);
       axios
-        .post(
-          "http://localhost/dashboard/proyecto-daw/src/backend/registerUser.php",
-          {
-            method: "POST",
-            username: "fran",
-            name: "fran",
-            surname: "fran",
-            password: "fran",
-            picture: this.image,
-            observations: "fran",
-          }
-        )
+        .post("http://localhost:8000/registerUser.php", {
+          username: "fran",
+          name: "fran",
+          surname: "fran",
+          password: "fran",
+          picture: "a",
+          observations: "fran",
+        })
         .then(function (response) {
           console.log(this.image);
           console.log(response.data);

@@ -53,16 +53,20 @@ function editUser($id, $username, $name, $surname, $password, $picture = null)
 function deleteUserById($id)
 {
     $pdo = Connection::getInstance();
-
-    $sql = "DELETE FROM `job` WHERE `employee_ID` = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(1, $id);
-    $stmt->execute();
+    $sql = "SELECT * FROM `job` WHERE `employee_ID` = $id";
+    $stmt = $pdo->query($sql);
     
+    if ($stmt->rowCount() > 0) {
+        $sql = "DELETE FROM `job` WHERE `employee_ID` = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+    }
+
     $sql2 = "DELETE FROM `user` WHERE `id`=?";
     $stmt2 = $pdo->prepare($sql2);
     $stmt2->bindParam(1, $id);
-    
+
     return $stmt2->execute();
 }
 
@@ -80,7 +84,7 @@ function getUserByCredentials($username, $password)
 
     $stmt->execute();
 
-    $row = $stmt->fetch();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     return $row;
 }
