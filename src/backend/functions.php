@@ -24,7 +24,7 @@ function createUser($username, $name, $surname, $password, $picture = null, $obs
     $stmt->bindParam(3, $surname);
     $stmt->bindParam(4, $password);
     $stmt->bindParam(5, $picture);
-    $stmt->bindParam(5, $observations);
+    $stmt->bindParam(6, $observations);
 
     return $stmt->execute();
 }
@@ -53,15 +53,23 @@ function editUser($id, $username, $name, $surname, $password, $picture = null)
 function deleteUserById($id)
 {
     $pdo = Connection::getInstance();
+    $sql = "SELECT * FROM `job` WHERE `employee_ID` = $id";
+    $stmt = $pdo->query($sql);
+    
+    if ($stmt->rowCount() > 0) {
+        $sql = "DELETE FROM `job` WHERE `employee_ID` = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+    }
 
-    $sql = "DELETE FROM `user` WHERE `id`=?";
+    $sql2 = "DELETE FROM `user` WHERE `id`=?";
+    $stmt2 = $pdo->prepare($sql2);
+    $stmt2->bindParam(1, $id);
 
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->bindParam(1, $id);
-
-    return $stmt->execute();
+    return $stmt2->execute();
 }
+
 //obtener empleado por nombre de usuario y contraseña
 function getUserByCredentials($username, $password)
 {
@@ -76,7 +84,7 @@ function getUserByCredentials($username, $password)
 
     $stmt->execute();
 
-    $row = $stmt->fetch();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     return $row;
 }
@@ -105,7 +113,8 @@ function getUsers()
 
     $pdo = Connection::getInstance();
 
-    $sql = "SELECT * FROM `user`";
+    $sql = "SELECT `user`.`id`, `user`.`username`, `user`.`name`, `user`.`surname`, `user`.`password`, `user`.`picture`,
+    `user`.`observations`, `job`.`job`, `job`.`salary`, `job`.`salary_type`, `job`.`pot`  FROM `user` LEFT JOIN `job` ON `user`.`id` = `job`.`employee_ID`;";
 
     $stmt = $pdo->prepare($sql);
 
@@ -194,7 +203,6 @@ function addPot($id, $pot)
 function login($username, $password)
 {
     session_start();
-    $logged = false;
     $pdo = Connection::getInstance();
     $sql = "SELECT * FROM user";
     $stmt = $pdo->query($sql);

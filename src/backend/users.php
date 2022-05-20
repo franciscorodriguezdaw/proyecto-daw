@@ -16,6 +16,10 @@ foreach ($users as $key => $user) {
         'username' => $user['username'],
         'password' => $user['password'],
         'picture' => base64_encode($user['picture']),
+        'salary' => $user['salary'],
+        'salary_type' => $user['salary_type'],
+        'job' => $user['job'],
+        'pot' => $user['pot'],
     );
     $array["users"][] = $item;
 }

@@ -58,14 +58,21 @@
           </router-link>
         </div>
         <div class="col cardUser" id="nameUser">
-          <router-link to="/detail" id="nameComp">
-            <p>{{ user.name + " " + user.surname }}</p>
-            <p>Laburo</p>
-          </router-link>
+          <p>{{ user.name + " " + user.surname }}</p>
+          <span id="info">
+            <p><b>Trabajo: </b>{{ user.job }}</p>
+            <p><b>Salario: </b>{{ user.salary }}</p>
+            <p><b>Tipo de salario: </b>{{ user.salary_type }}</p>
+            <p><b>Propina: </b>{{ user.pot }}</p>
+          </span>
         </div>
 
         <div class="ghost"></div>
-        <i class="fa-solid fa-xmark" id="deleteIcon"></i>
+        <i
+          class="fa-solid fa-xmark"
+          id="deleteIcon"
+          @click="deleteData(user.id)"
+        ></i>
       </div>
     </div>
   </article>
@@ -92,14 +99,35 @@ export default {
       checkInTime: 0,
     };
   },
-
-  created() {
-    axios
-      .get("http://localhost/dashboard/proyecto-daw/src/backend/userList.php")
-      .then((response) => {
-        this.users = response.data.users;
-        console.log(this.users);
+  methods: {
+    deleteData(id) {
+      Swal.fire({
+        title: `¿Estás seguro de que quieres eliminar al empleado con id ${id}?`,
+        showDenyButton: true,
+        icon: "warning",
+        confirmButtonText: "Eliminar",
+        denyButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete("http://localhost:8080/api/" + id)
+            .then(function (response) {
+              Swal.fire("!Eliminado correctamente!", "", "success");
+              console.log(response.data);
+            })
+            .catch(() => {
+              Swal.fire("No se pudo eliminar al empleado", "", "error");
+            });
+        } else if (result.isDenied) {
+          Swal.fire("¡Ok! Este empleado no será eliminado", "", "success");
+        }
       });
+    },
+  },
+  created() {
+    axios.get("http://localhost:8080/api/").then((response) => {
+      this.users = response.data.users;
+    });
   },
   saveCheckTime() {
     Swal.fire(
@@ -179,6 +207,12 @@ export default {
 </script>
 
 <style>
+#info > * {
+  text-align: left;
+  font-size: 12px;
+  font-family: sans-serif;
+  margin-bottom: 0px;
+}
 .profilePic {
   width: 120px;
   height: 120px;
@@ -208,7 +242,7 @@ export default {
   border: 2px solid #806b2d6c;
   width: 80%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 20px;
   padding-left: 35px;
   padding-right: 35px;
