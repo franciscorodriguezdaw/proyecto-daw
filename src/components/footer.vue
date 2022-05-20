@@ -19,7 +19,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  margin-top: 200px;
+  margin-top: 310px;
 }
 footer>div{
   font-size: 18px;

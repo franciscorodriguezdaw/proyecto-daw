@@ -8,6 +8,7 @@
         id="userWeb"
         name="userWeb"
         aria-describedby="userWeb"
+        required
       />
       <div id="userWeb" class="form-text">
         Acuerdate, seguramente sea tu nombre más tu apellido
@@ -18,22 +19,28 @@
       <label for="avatar" class="form-label"
         >Seleccione su foto de pérfil</label
       >
-      <input class="form-control" type="file" id="avatar" name="avatar" />
+      <input
+        class="form-control"
+        type="file"
+        id="avatar"
+        name="avatar"
+        required
+      />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12  rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="name" name="name" />
+      <input type="text" class="form-control" id="name" name="name" required />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12  rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="surname" class="form-label">Apellidos</label>
-      <input type="surname" class="form-control" id="surname" />
+      <input type="surname" class="form-control" id="surname" required />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12  rowInput">
+    <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="selectWork">Seleccione su Labor en la Empresa</label>
-      <select class="form-select" id="selectWork" name="selectWork">
+      <select class="form-select" id="selectWork" name="selectWork" required>
         <option selected>Seleccione su labor en la empresa</option>
         <option>Lorem ipsum</option>
         <option>Ipsum Lorem</option>
@@ -41,28 +48,40 @@
       </select>
     </div>
 
-    <div class="mb-4 col-md-7 col-xs-12  rowInput">
+    <div class="mb-4 col-md-7 col-xs-12 rowInput">
       <label for="workday" class="form-label">Jornada Laboral</label>
-      <br />
-      <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input
-        type="time"
-        class="form-control-inline"
-        id="workday"
-        name="checkInTime"
-      />
-      <label for="workday" class="form-control-inline">Hora de Salida </label>
-      <input
-        type="time"
-        class="form-control-inline"
-        id="workday"
-        name="departureTime"
-      />
+      <div id="checkingInp">
+        <label for="workday" class="form-control-inline"
+          >Hora de Entrada
+        </label>
+        <input
+          type="time"
+          class="form-control-inline"
+          id="workday"
+          name="checkInTime"
+          required
+        />
+        <label for="workday" class="form-control-inline">Hora de Salida </label>
+        <input
+          type="time"
+          class="form-control-inline"
+          id="workday"
+          name="departureTime"
+          required
+        />
+      </div>
     </div>
 
-    <div class="mb-4 col-md-7 col-xs-12  rowInput">
+    <div class="mb-4 col-md-7 col-xs-12 rowInput">
       <label for="salary" class="form-label">Salario</label>
-      <input type="number" step="10" min="0" class="form-control" id="salary" />
+      <input
+        type="number"
+        step="10"
+        min="0"
+        class="form-control"
+        id="salary"
+        required
+      />
 
       <div class="form-check form-check-inline mt-4 firstCheck">
         <input
@@ -71,6 +90,7 @@
           name="workShift"
           id="month"
           checked
+          required
         />
         <label class="form-check-label" for="month"> Mensual </label>
       </div>
@@ -82,6 +102,7 @@
           name="workShift"
           id="salTime"
           checked
+          required
         />
         <label class="form-check-label" for="salTime">
           Salario por Unidad de Tiempo</label
@@ -101,7 +122,7 @@
       ></textarea>
     </div>
 
-    <div class="mb-2 col-md-5 col-xs-12  form-check" id="checkYes">
+    <div class="mb-2 col-md-5 col-xs-12 form-check" id="checkYes">
       <input
         type="checkbox"
         class="form-check-input"
@@ -155,8 +176,6 @@ form {
 #confirm > button {
   position: absolute;
   margin-top: 50px;
-  float: left;
-  width: 35%;
 }
 
 #confirm {
@@ -169,17 +188,18 @@ form {
 }
 
 button[type="submit"] {
-  font-size: 18px;
-  padding-top: 23px;
-  padding-bottom: 43px;
+  width: 25%;
+  left: 35%;
+  font-size: 22px;
+  padding-top: 13px;
+  height: 1px;
+  padding-bottom: 48px;
   background-color: rgb(235, 162, 67);
   border: 2px solid rgb(242, 219, 184);
   transition: 1s ease-out;
 }
 
 button[type="submit"]:hover {
-  padding-top: 25px;
-  padding-bottom: 45px;
   margin: 0 auto;
   color: black;
   background-color: rgb(235, 178, 103);
@@ -198,37 +218,59 @@ button[type="submit"]:hover {
   font-size: 18px;
 }
 
-label[for="workday"]:nth-child(3),
-label[for="workday"]:nth-child(5) {
+label[for="workday"] {
   font-size: 18px;
-  padding: 15px;
 }
 
-label[for="workday"]:nth-child(3) {
-  margin-left: -2%;
+label[for="workday"]:nth-child(2) {
+  margin-left: 15%;
 }
 
 input[type="time"] {
-  margin-right: 4%;
-  width: 22%;
+    margin-left: 2%;
+
+  margin-right: 2%;
+  width: 18%;
   height: 40px;
 }
 
 @media (max-width: 850px) {
-#confirm>button{
-  padding-top: 1px;
-  height: 60px;
+  #confirm > button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 290px;
+    height: 70px;
+    left: 20%;
+  }
+
+  input[type="time"] {
+    margin-right: 10%;
+    width: 25%;
+    height: 40px;
+        margin-top: 20px;
+
+  }
+
+  #checkYes {
+    margin-left: 0px;
+  }
 }
 
-#checkYes{
-  margin-left: 0px;
-}
-}
+@media (min-width: 850px) and (max-width: 1100px) {
+  #confirm > button {
+    width: 320px;
+    height: 70px;
+  }
+  #checkYes {
+    margin-left: 5px;
+  }
 
-@media (max-width: 1100px) {
-
-#checkYes{
-  margin-left: 5px;
-}
+  input[type="time"] {
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-right: 10%;
+    width: 30%;
+    height: 40px;
+  }
 }
 </style>
