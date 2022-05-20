@@ -216,6 +216,10 @@ export default {
 </script>
 
 <style>
+
+form{
+  margin-top: 50px;
+}
 .contForm {
   text-align: left;
   background-color: #eca51fa5;
@@ -315,6 +319,17 @@ input[type="time"] {
   padding: 40px;
   border-radius: 10px;
 }
+
+#pictureDiv > img {
+    padding: 10px;
+    width: 10rem;
+  }
+  #pictureDiv {
+    padding: 10px 20%;
+  }
+
+
+
 
 @media (max-width: 850px) {
   #confirm > button {
