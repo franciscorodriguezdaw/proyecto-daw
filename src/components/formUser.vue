@@ -81,12 +81,12 @@
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input type="time" class="form-control-inline" name="checkInTime" />
+      <input type="time" class="form-control-inline" name="checkInTime" /><br/>
       <label for="workday" class="form-control-inline">Hora de Salida </label>
       <input type="time" class="form-control-inline" name="departureTime" />
     </div>
 
-    <div class="mb-4 col-md-7 col-xs-12 rowInput">
+    <div class="mb-4 col-md-7 col-xs-12 rowInput salario">
       <label for="salary" class="form-label">Salario</label>
       <input
         type="number"
@@ -97,7 +97,7 @@
         required
       />
 
-      <div class="form-check form-check-inline mt-4 firstCheck">
+      <div class="form-check form-check-inline mt-4">
         <input
           class="form-check-input"
           type="radio"
@@ -152,7 +152,7 @@
 
     <div class="mb-2 col-8 form-check" id="confirm">
       <button type="submit" class="btn btn-primary" id="submitButton">
-        Crear Empleado
+        Registrar
       </button>
     </div>
   </form>
@@ -167,12 +167,9 @@ export default {
   methods: {
     registerUser(e) {
       e.preventDefault();
-      this.getBase64Image(
-        this.image,
-        function (dataUrl) {
-          console.log("RESULT:", dataUrl);
-        }
-      );
+      this.getBase64Image(this.image, function (dataUrl) {
+        console.log("RESULT:", dataUrl);
+      });
       axios
         .post("http://localhost:8000/registerUser.php", {
           username: document.getElementById("userWeb").value,
@@ -276,10 +273,6 @@ textarea {
   margin-bottom: 20px;
 }
 
-#submitLabel {
-  margin-bottom: 20px;
-}
-
 .form-check {
   margin-left: 40px;
 }
@@ -296,13 +289,10 @@ textarea {
   padding-bottom: 100px;
 }
 
-.firstCheck {
-  margin-left: 8px;
-}
-
 button[type="submit"] {
   font-size: 18px;
   margin-top: 0px;
+  padding: 10px 70px;
   background-color: rgb(235, 162, 67);
   border: 2px solid rgb(242, 219, 184);
   transition: 1s ease-out;
@@ -336,7 +326,7 @@ label[for="workday"]:nth-child(2) {
 }
 
 input[type="time"] {
-    margin-left: 2%;
+  margin-left: 2%;
 
   margin-right: 2%;
   width: 18%;
@@ -360,31 +350,28 @@ input[type="time"] {
 }
 
 #pictureDiv > img {
-    padding: 10px;
-    width: 10rem;
-  }
-  #pictureDiv {
-    padding: 10px 20%;
-  }
-
-
-
+  padding: 10px;
+  width: 10rem;
+}
+#pictureDiv {
+  padding: 10px 20%;
+}
 
 @media (max-width: 850px) {
   #confirm > button {
+    font-size: 1.2em;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 290px;
+    width: 220px;
     height: 70px;
-    left: 20%;
+    left: 22%;
   }
 
   input[type="time"] {
     margin-right: 10%;
     width: 25%;
     height: 40px;
-        margin-top: 20px;
-
+    margin-top: 20px;
   }
 
   #checkYes {
