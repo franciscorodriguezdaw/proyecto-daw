@@ -3,15 +3,18 @@ include "functions.php";
 include "cors.php";
 cors();
 
+$data = file_get_contents("php://input");
+$user = json_decode($data);
+
 if (createUser(
-    $_POST["username"],
-    $_POST["name"],
-    $_POST["surname"],
-    $_POST["password"],
-    $_POST["picture"],
-    $_POST["observations"]
+    $user->username,
+    $user->name,
+    $user->surname,
+    $user->password,
+    $user->picture,
+    $user->observations
 )) {
-    echo json_encode(getUserByCredentials($_POST["username"], $_POST["password"]));
+    echo json_encode(getUserByCredentials($user->username, $user->password));
 } else {
     echo "ERROR: no se pudo insertar al usuario";
 }

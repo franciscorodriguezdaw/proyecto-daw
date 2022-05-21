@@ -223,13 +223,14 @@ export default {
       let password = this.password;
 
       axios
-        .get("http://localhost/dashboard/proyecto-daw/src/backend/login.php")
+        .get("http://localhost:8000/api.php")
         .then(function (response) {
           response.data.users.forEach((user) => {
             if (user.username == username && user.password == password) {
               logged = true;
             }
           });
+  console.log(response.data)
 
           if (response.status == 200 && logged) {
             const Toast = Swal.mixin({

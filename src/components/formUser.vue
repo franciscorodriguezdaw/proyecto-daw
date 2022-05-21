@@ -1,5 +1,5 @@
 <template>
-  <form class="container contForm">
+  <form class="container contForm" @submit="registerUser">
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="userWeb" class="form-label">Usuario de plataforma</label>
       <input
@@ -114,7 +114,9 @@
     </div>
 
     <div class="mb-4 rowInput">
-      <label for="moreInf" class="form-label">Observaciones</label>
+      <label for="moreInf" class="form-label" id="observations"
+        >Observaciones</label
+      >
       <textarea
         class="form-control"
         id="moreInf"
@@ -131,14 +133,14 @@
         name="agreeRead"
         required
       />
-      <label class="form-check-label" for="agreeRead"
+      <label class="form-check-label" for="agreeRead" id="submitLabel"
         >HE LEÍDO Y ACEPTO LOS TÉRMINOS LOS TÉRMINOS Y CONDICIOONES DE LA PÁGINA
         WEB</label
       >
     </div>
 
     <div class="mb-2 col-8 form-check" id="confirm">
-      <button @click="registerUser()" type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary" id="submitButton">
         Crear Empleado
       </button>
     </div>
@@ -147,26 +149,50 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
+
 export default {
   name: "form-user",
   methods: {
-    registerUser() {
-      console.log(this.image);
+    registerUser(e) {
+      e.preventDefault();
+      this.getBase64Image(
+        this.image,
+        function (dataUrl) {
+          console.log("RESULT:", dataUrl);
+        }
+      );
       axios
         .post("http://localhost:8000/registerUser.php", {
-          username: "fran",
-          name: "fran",
-          surname: "fran",
-          password: "fran",
-          picture: "a",
-          observations: "fran",
+          username: document.getElementById("userWeb").value,
+          name: document.getElementById("name").value,
+          surname: document.getElementById("surname").value,
+          password: document.getElementById("password").value,
+          picture: this.image,
+          observations: document.getElementById("observations").value,
         })
         .then(function (response) {
-          console.log(this.image);
           console.log(response.data);
+
+          //SWAL añadido correctamente
+
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Usuario añadido correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         })
         .catch((e) => {
           console.log("Error: " + e);
+          Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "No se pudo añadir al usuario",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     },
     loadPicture: function (e) {
@@ -185,15 +211,19 @@ export default {
           "https://es.rescuedigitalmedia.com/wp-content/uploads/sites/7/2019/04/jpeg-and-jpg-file-download-black-icon-vector-37669571.jpg";
       }
     },
-  },
-  getBase64Image(img) {
-    let canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    let ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    let dataURL = canvas.toDataURL("image/png");
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    getBase64Image: function (url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+          callback(reader.result);
+        };
+        reader.readAsDataURL(xhr.response);
+      };
+      xhr.open("GET", url);
+      xhr.responseType = "blob";
+      xhr.send();
+    },
   },
   data() {
     return {
@@ -205,12 +235,15 @@ export default {
 </script>
 
 <style>
+#submitButton {
+  margin-top: -20px;
+}
 .contForm {
   text-align: left;
   background-color: #eca51fa5;
-  padding: 70px;
   padding-top: 40px;
   padding-left: 8%;
+  padding-right: 8%;
   border-radius: 30px;
 }
 form > .rowInput {
@@ -223,6 +256,18 @@ form > .rowInput {
 form {
   margin-bottom: 200px;
 }
+input,
+label:not(#submitLabel),
+#recordatorio,
+select,
+textarea {
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+#submitLabel {
+  margin-bottom: 20px;
+}
 
 .form-check {
   margin-left: 40px;
@@ -230,7 +275,7 @@ form {
 
 #confirm > button {
   position: absolute;
-  margin-top: 50px;
+  margin-top: 10px;
   float: left;
   width: 35%;
 }
@@ -246,8 +291,7 @@ form {
 
 button[type="submit"] {
   font-size: 18px;
-  padding-top: 23px;
-  padding-bottom: 43px;
+  margin-top: 0px;
   background-color: rgb(235, 162, 67);
   border: 2px solid rgb(242, 219, 184);
   transition: 1s ease-out;
