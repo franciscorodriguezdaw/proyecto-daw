@@ -8,6 +8,7 @@
         id="userWeb"
         name="userWeb"
         aria-describedby="userWeb"
+        required
       />
       <div id="recordatorio" class="form-text">
         *El usuario será su primer nombre en minúsculas junto a su fecha de
@@ -54,12 +55,12 @@
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="name" name="name" />
+      <input type="text" class="form-control" id="name" name="name" required />
     </div>
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="surname" class="form-label">Apellidos</label>
-      <input type="surname" class="form-control" id="surname" />
+      <input type="surname" class="form-control" id="surname" required />
     </div>
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
@@ -87,7 +88,14 @@
 
     <div class="mb-4 col-md-7 col-xs-12 rowInput">
       <label for="salary" class="form-label">Salario</label>
-      <input type="number" step="10" min="0" class="form-control" id="salary" />
+      <input
+        type="number"
+        step="10"
+        min="0"
+        class="form-control"
+        id="salary"
+        required
+      />
 
       <div class="form-check form-check-inline mt-4 firstCheck">
         <input
@@ -96,6 +104,7 @@
           name="workShift"
           id="month"
           checked
+          required
         />
         <label class="form-check-label" for="month"> Mensual </label>
       </div>
@@ -106,6 +115,8 @@
           type="radio"
           name="workShift"
           id="salTime"
+          checked
+          required
         />
         <label class="form-check-label" for="salTime">
           Salario por Unidad de Tiempo</label
@@ -298,8 +309,6 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  padding-top: 25px;
-  padding-bottom: 45px;
   margin: 0 auto;
   color: black;
   background-color: rgb(235, 178, 103);
@@ -318,19 +327,19 @@ button[type="submit"]:hover {
   font-size: 18px;
 }
 
-label[for="workday"]:nth-child(3),
-label[for="workday"]:nth-child(5) {
+label[for="workday"] {
   font-size: 18px;
-  padding: 15px;
 }
 
-label[for="workday"]:nth-child(3) {
-  margin-left: -2%;
+label[for="workday"]:nth-child(2) {
+  margin-left: 15%;
 }
 
 input[type="time"] {
-  margin-right: 4%;
-  width: 22%;
+    margin-left: 2%;
+
+  margin-right: 2%;
+  width: 18%;
   height: 40px;
 }
 #recordatorio {
@@ -350,27 +359,54 @@ input[type="time"] {
   border-radius: 10px;
 }
 
-@media (max-width: 850px) {
-  #confirm > button {
-    padding-top: 1px;
-    height: 60px;
-  }
-
-  #checkYes {
-    margin-left: 0px;
-  }
-  #pictureDiv > img {
+#pictureDiv > img {
     padding: 10px;
     width: 10rem;
   }
   #pictureDiv {
     padding: 10px 20%;
   }
+
+
+
+
+@media (max-width: 850px) {
+  #confirm > button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 290px;
+    height: 70px;
+    left: 20%;
+  }
+
+  input[type="time"] {
+    margin-right: 10%;
+    width: 25%;
+    height: 40px;
+        margin-top: 20px;
+
+  }
+
+  #checkYes {
+    margin-left: 0px;
+  }
 }
 
-@media (max-width: 1100px) {
+@media (min-width: 850px) and (max-width: 1100px) {
+  #confirm > button {
+    width: 320px;
+    height: 70px;
+  }
   #checkYes {
     margin-left: 5px;
+  }
+
+  input[type="time"] {
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-right: 10%;
+    width: 30%;
+    height: 40px;
   }
 }
 </style>
