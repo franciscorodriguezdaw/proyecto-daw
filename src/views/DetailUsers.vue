@@ -26,7 +26,7 @@ export default {
     axios.get("http://localhost:8080/api/").then((response) => {
       console.log(userId);
       response.data.users.forEach(user => {
-        if(user.id == userId){
+        // if(user.id == userId){
           // console.log("!!Es: " + user.name)
           document.getElementById("userWeb").value = user.username;
           document.getElementById("password").value = user.password;
@@ -34,7 +34,8 @@ export default {
           document.getElementById("name").value = user.name;
           document.getElementById("surname").value = user.surname;
           document.getElementById("observations").value = user.observations ?? "";
-        }
+          console.log(user)
+        // }
       });
     });
   },

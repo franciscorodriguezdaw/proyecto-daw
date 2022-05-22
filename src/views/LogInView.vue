@@ -225,18 +225,19 @@ export default {
     login() {
       let username = this.username;
       let password = this.password;
-
+      let logged = false;
       axios
         .get("http://localhost:8000/api.php")
         .then(function (response) {
           response.data.users.forEach((user) => {
             if (user.username == username && user.password == password) {
               sessionStorage.setItem("user", user.username);
+              logged = true;
             }
             console.log(response.data);
           });
 
-          if (response.status == 200) {
+          if (response.status == 200 && logged) {
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",

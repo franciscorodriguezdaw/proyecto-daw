@@ -67,7 +67,7 @@
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input type="time" class="form-control-inline" name="checkInTime" /><br/>
+      <input type="time" class="form-control-inline" name="checkInTime" /><br />
       <label for="workday" class="form-control-inline">Hora de Salida </label>
       <input type="time" class="form-control-inline" name="departureTime" />
     </div>
@@ -111,10 +111,8 @@
     </div>
 
     <div class="mb-4 rowInput">
-      <label for="moreInf" class="form-label"
-        >Observaciones</label
-      >
-      <textarea 
+      <label for="moreInf" class="form-label">Observaciones</label>
+      <textarea
         class="form-control"
         id="observations"
         name="moreInf"
@@ -153,49 +151,53 @@ export default {
   methods: {
     registerUser(e) {
       e.preventDefault();
-      if(sessionStorage.getItem("user")){
+      if (sessionStorage.getItem("user")) {
         this.getBase64Image(this.image, function (dataUrl) {
-        axios
-        .post("http://localhost:8000/updateUser.php", {
-          id: sessionStorage.getItem("id"),
-          username: document.getElementById("userWeb").value,
-          name: document.getElementById("name").value,
-          surname: document.getElementById("surname").value,
-          password: document.getElementById("password").value,
-          picture: dataUrl,
-          observations: document.getElementById("observations").value,
-        })
-        .then(function (response) {
-          console.log(response.data);
+          axios
+            .post("http://localhost:8000/updateUser.php", {
+              id: sessionStorage.getItem("id"),
+              username: document.getElementById("userWeb").value,
+              name: document.getElementById("name").value,
+              surname: document.getElementById("surname").value,
+              password: document.getElementById("password").value,
+              picture: dataUrl,
+              observations: document.getElementById("observations").value,
 
-          //SWAL cuando se añade correctamente
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: "Actualizado correctamente",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        })
-        .catch((e) => {
-          console.log("Error: " + e);
-          Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "No se pudo editar el usuario",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+              job: document.getElementById("selectWork").value,
+              salary: document.getElementById("salary").value,
+              salary_type: document.getElementsByName("workShift")[0].value,
+            })
+            .then(function (response) {
+              console.log(response.data);
+
+              //SWAL cuando se añade correctamente
+              Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "Actualizado correctamente",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            })
+            .catch((e) => {
+              console.log("Error: " + e);
+              Swal.fire({
+                position: "top",
+                icon: "error",
+                title: "No se pudo editar el usuario",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            });
         });
-      });
       } else {
         Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "Error: no estás autorizado a realizar esta operación",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          position: "top",
+          icon: "error",
+          title: "Error: no estás autorizado a realizar esta operación",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     },
     loadPicture: function (e) {

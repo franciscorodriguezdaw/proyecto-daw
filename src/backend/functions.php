@@ -75,7 +75,7 @@ function getUserByCredentials($username, $password)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "SELECT * FROM `user` WHERE `username` = ? AND `password` = ?";
+    $sql = "SELECT * FROM `user` LEFT JOIN `job` ON `user`.`id` = `job`.`employee_ID` WHERE `username` = ? AND `password` = ?";
 
     $stmt = $pdo->prepare($sql);
 
@@ -158,6 +158,23 @@ function addJobById($job, $pot, $salary, $salary_type, $employee_ID)
     return $stmt->execute();
 }
 
+function updateJobById($job, $pot, $salary, $salary_type, $employee_ID)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "UPDATE `job` SET `job`='?',`pot`='?',`salary`='?',`salary_type`='?' WHERE `employee_ID`='?'";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $job);
+    $stmt->bindParam(2, $pot);
+    $stmt->bindParam(3, $salary);
+    $stmt->bindParam(4, $salary_type);
+    $stmt->bindParam(5, $employee_ID);
+
+    return $stmt->execute();
+}
+
 
 function updateCheckIn($id, $check_in_time)
 {
@@ -201,23 +218,23 @@ function addPot($id, $pot)
     return $stmt->execute();
 }
 
-function login($username, $password)
-{
-    session_start();
-    $pdo = Connection::getInstance();
-    $sql = "SELECT * FROM user";
-    $stmt = $pdo->query($sql);
-    while ($row = $stmt->fetch()) {
-        if ($username == $row["username"] && $password == $row["password"]) {
-            session_start();
-            $_SESSION[$row["username"]] = $row["username"];
-            return true;
-        }
-    }
-    return false;
-}
+// function login($username, $password)
+// {
+//     session_start();
+//     $pdo = Connection::getInstance();
+//     $sql = "SELECT * FROM user";
+//     $stmt = $pdo->query($sql);
+//     while ($row = $stmt->fetch()) {
+//         if ($username == $row["username"] && $password == $row["password"]) {
+//             session_start();
+//             $_SESSION[$row["username"]] = $row["username"];
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
-function logout()
-{
-    session_destroy();
-}
+// function logout()
+// {
+//     session_destroy();
+// }

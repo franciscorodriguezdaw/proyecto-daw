@@ -67,13 +67,17 @@
       <label for="selectWork">Seleccione su Labor en la Empresa</label>
       <select class="form-select" id="selectWork" name="selectWork">
         <option selected hidden>Seleccione su labor en la empresa</option>
-        <option>Programador web</option>
-        <option>Administrador de sistemas</option>
-        <option>Científico de datos</option>
-        <option>Programador móvil</option>
-        <option>Auxiliar infórmatica</option>
-        <option>Tester técnico</option>
-        <option>Desarrollador de software</option>
+        <option value="Programador web">Programador web</option>
+        <option value="Administrador de sistemas">
+          Administrador de sistemas
+        </option>
+        <option value="Cientifico de datos">Científico de datos</option>
+        <option value="Programador movil">Programador móvil</option>
+        <option value="Auxiliar infórmatica">Auxiliar infórmatica</option>
+        <option value="Tester técnico">Tester técnico</option>
+        <option value="Desarrollador de software">
+          Desarrollador de software
+        </option>
       </select>
     </div>
 
@@ -81,7 +85,7 @@
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input type="time" class="form-control-inline" name="checkInTime" /><br/>
+      <input type="time" class="form-control-inline" name="checkInTime" /><br />
       <label for="workday" class="form-control-inline">Hora de Salida </label>
       <input type="time" class="form-control-inline" name="departureTime" />
     </div>
@@ -125,10 +129,8 @@
     </div>
 
     <div class="mb-4 rowInput">
-      <label for="moreInf" class="form-label"
-        >Observaciones</label
-      >
-      <textarea 
+      <label for="moreInf" class="form-label">Observaciones</label>
+      <textarea
         class="form-control"
         id="observations"
         name="moreInf"
@@ -167,52 +169,53 @@ export default {
   methods: {
     registerUser(e) {
       e.preventDefault();
-      if(sessionStorage.getItem("user")){
+      if (sessionStorage.getItem("user")) {
         this.getBase64Image(this.image, function (dataUrl) {
-        axios
-        .post("http://localhost:8080/api/", {
-          username: document.getElementById("userWeb").value,
-          name: document.getElementById("name").value,
-          surname: document.getElementById("surname").value,
-          password: document.getElementById("password").value,
-          picture: dataUrl,
-          observations: document.getElementById("observations").value,
 
-          job: document.getElementById("selectWork").innerText,
-          salary: document.getElementById("salary").value,
-          salary_type: document.getElementsByName("workShift")[0].value,
-        })
-        .then(function (response) {
-          console.log(response.data);
+          axios
+            .post("http://localhost:8080/api/", {
+              username: document.getElementById("userWeb").value,
+              name: document.getElementById("name").value,
+              surname: document.getElementById("surname").value,
+              password: document.getElementById("password").value,
+              picture: dataUrl,
+              observations: document.getElementById("observations").value,
 
-          //SWAL cuando se añade correctamente
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: "Usuario añadido correctamente",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        })
-        .catch((e) => {
-          console.log("Error: " + e);
-          Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "No se pudo añadir al usuario",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+              job: document.getElementById("selectWork").value,
+              salary: document.getElementById("salary").value,
+              salary_type: document.getElementsByName("workShift")[0].value,
+            })
+            .then(function (response) {
+              console.log(response.data);
+
+              //SWAL cuando se añade correctamente
+              Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "Usuario añadido correctamente",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            })
+            .catch((e) => {
+              console.log("Error: " + e);
+              Swal.fire({
+                position: "top",
+                icon: "error",
+                title: "No se pudo añadir al usuario",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            });
         });
-      });
       } else {
         Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "Error: no estás autorizado a realizar esta operación",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          position: "top",
+          icon: "error",
+          title: "Error: no estás autorizado a realizar esta operación",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     },
     loadPicture: function (e) {
