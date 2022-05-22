@@ -1,4 +1,9 @@
 <template>
+  <router-link to="/users" id="backList">
+    <a class="navbar-brand" href="">
+      <img src="../assets/undo.png" width="25" height="25" alt="Menú" />
+    </a>
+  </router-link>
   <form class="container contForm" @submit="registerUser">
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="userWeb" class="form-label">Usuario de plataforma</label>
@@ -36,7 +41,7 @@
       />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12 rowInput">
+    <div class="col-md-7 col-xs-12 rowInput">
       <label for="avatar" class="form-label"
         >Seleccione su foto de perfil</label
       >
@@ -81,7 +86,7 @@
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input type="time" class="form-control-inline" name="checkInTime" /><br/>
+      <input type="time" class="form-control-inline" name="checkInTime" /><br />
       <label for="workday" class="form-control-inline">Hora de Salida </label>
       <input type="time" class="form-control-inline" name="departureTime" />
     </div>
@@ -125,10 +130,8 @@
     </div>
 
     <div class="mb-4 rowInput">
-      <label for="moreInf" class="form-label"
-        >Observaciones</label
-      >
-      <textarea 
+      <label for="moreInf" class="form-label">Observaciones</label>
+      <textarea
         class="form-control"
         id="observations"
         name="moreInf"
@@ -167,52 +170,52 @@ export default {
   methods: {
     registerUser(e) {
       e.preventDefault();
-      if(sessionStorage.getItem("user")){
+      if (sessionStorage.getItem("user")) {
         this.getBase64Image(this.image, function (dataUrl) {
-        axios
-        .post("http://localhost:8080/api/", {
-          username: document.getElementById("userWeb").value,
-          name: document.getElementById("name").value,
-          surname: document.getElementById("surname").value,
-          password: document.getElementById("password").value,
-          picture: dataUrl,
-          observations: document.getElementById("observations").value,
+          axios
+            .post("http://localhost:8080/api/", {
+              username: document.getElementById("userWeb").value,
+              name: document.getElementById("name").value,
+              surname: document.getElementById("surname").value,
+              password: document.getElementById("password").value,
+              picture: dataUrl,
+              observations: document.getElementById("observations").value,
 
-          job: document.getElementById("selectWork").innerText,
-          salary: document.getElementById("salary").value,
-          salary_type: document.getElementsByName("workShift")[0].value,
-        })
-        .then(function (response) {
-          console.log(response.data);
+              job: document.getElementById("selectWork").innerText,
+              salary: document.getElementById("salary").value,
+              salary_type: document.getElementsByName("workShift")[0].value,
+            })
+            .then(function (response) {
+              console.log(response.data);
 
-          //SWAL cuando se añade correctamente
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: "Usuario añadido correctamente",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        })
-        .catch((e) => {
-          console.log("Error: " + e);
-          Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "No se pudo añadir al usuario",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+              //SWAL cuando se añade correctamente
+              Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "Usuario añadido correctamente",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            })
+            .catch((e) => {
+              console.log("Error: " + e);
+              Swal.fire({
+                position: "top",
+                icon: "error",
+                title: "No se pudo añadir al usuario",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            });
         });
-      });
       } else {
         Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "Error: no estás autorizado a realizar esta operación",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          position: "top",
+          icon: "error",
+          title: "Error: no estás autorizado a realizar esta operación",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     },
     loadPicture: function (e) {
@@ -255,6 +258,38 @@ export default {
 </script>
 
 <style>
+#backList {
+  top: 45px;
+  left: 100px;
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 40%;
+  border: 3px solid rgb(107, 101, 77);
+  background: rgb(251, 239, 218);
+  transition: 2s;
+}
+
+#backList:hover {
+  background-color: #fbea96b7;
+  top: 10px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#backList > a {
+  margin: 0 auto;
+}
+
+#backList > a > img {
+  margin: 0 auto;
+  margin-top: 8px;
+}
+
 #submitButton {
   margin-top: -20px;
 }
@@ -318,7 +353,14 @@ button[type="submit"]:hover {
 }
 
 .rowInput > label {
-  font-size: 16px;
+  font-size: 20px;
+}
+.rowInput > input {
+  font-size: 20px;
+}
+
+.rowInput > textarea {
+  font-size: 20px;
 }
 
 #agreeRead {
@@ -406,6 +448,20 @@ input[type="time"] {
     margin-right: 10%;
     width: 30%;
     height: 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  #backList {
+    top: 10px;
+    left: 100px;
+    width: 45px;
+    height: 45px;
+  }
+
+  #backList > a > img {
+    margin: 0 auto;
+    margin-top: 6px;
   }
 }
 </style>
