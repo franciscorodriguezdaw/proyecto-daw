@@ -30,7 +30,7 @@ function createUser($username, $name, $surname, $password, $picture, $observatio
 }
 
 //editar empleado
-function editUser($id, $username, $name, $surname, $password, $picture = null)
+function editUser($id, $username, $name, $surname, $password, $picture, $observations)
 {
     $pdo = Connection::getInstance();
 
@@ -141,18 +141,19 @@ function getUserJobById($id)
     return $stmt->execute();
 }
 
-function addJobById($id, $pot, $salary, $employee_ID)
+function addJobById($job, $pot, $salary, $salary_type, $employee_ID)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "INSERT INTO `job`(`id`, `job`,  `pot`, `salary`, `salary_type`, `employee_ID`) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO `job`(`job`,  `pot`, `salary`, `salary_type`, `employee_ID`) VALUES (?, ?, ?, ?, ?)";
 
     $stmt = $pdo->prepare($sql);
 
-    $stmt->bindParam(1, $id);
+    $stmt->bindParam(1, $job);
     $stmt->bindParam(2, $pot);
     $stmt->bindParam(3, $salary);
-    $stmt->bindParam(4, $employee_ID);
+    $stmt->bindParam(4, $salary_type);
+    $stmt->bindParam(5, $employee_ID);
 
     return $stmt->execute();
 }

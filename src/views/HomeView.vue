@@ -75,6 +75,13 @@ export default {
 </script>
 
 <style>
+body {
+  background: url("../assets/fondo.jpg");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-size: 300px 200px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

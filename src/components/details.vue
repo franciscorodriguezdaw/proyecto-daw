@@ -10,10 +10,6 @@
         aria-describedby="userWeb"
         required
       />
-      <div id="recordatorio" class="form-text">
-        *El usuario será su primer nombre en minúsculas junto a su fecha de
-        nacimiento en formato dd/mm/aa
-      </div>
     </div>
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="userWeb" class="form-label">Contraseña</label>
@@ -22,16 +18,6 @@
         class="form-control"
         id="password"
         name="password"
-        aria-describedby="userWeb"
-      />
-    </div>
-    <div class="mb-2 col-md-7 col-xs-12 rowInput">
-      <label for="userWeb" class="form-label">Repetir contraseña</label>
-      <input
-        type="password"
-        class="form-control"
-        id="repeatPassword"
-        name="repeatPassword"
         aria-describedby="userWeb"
       />
     </div>
@@ -60,7 +46,7 @@
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="surname" class="form-label">Apellidos</label>
-      <input type="surname" class="form-control" id="surname" required />
+      <input type="text" class="form-control" id="surname" required />
     </div>
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
@@ -163,24 +149,21 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export default {
-  name: "form-user",
+  name: "details-user",
   methods: {
     registerUser(e) {
       e.preventDefault();
       if(sessionStorage.getItem("user")){
         this.getBase64Image(this.image, function (dataUrl) {
         axios
-        .post("http://localhost:8080/api/", {
+        .post("http://localhost:8000/updateUser.php", {
+          id: sessionStorage.getItem("id"),
           username: document.getElementById("userWeb").value,
           name: document.getElementById("name").value,
           surname: document.getElementById("surname").value,
           password: document.getElementById("password").value,
           picture: dataUrl,
           observations: document.getElementById("observations").value,
-
-          job: document.getElementById("selectWork").innerText,
-          salary: document.getElementById("salary").value,
-          salary_type: document.getElementsByName("workShift")[0].value,
         })
         .then(function (response) {
           console.log(response.data);
@@ -189,7 +172,7 @@ export default {
           Swal.fire({
             position: "top",
             icon: "success",
-            title: "Usuario añadido correctamente",
+            title: "Actualizado correctamente",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -199,7 +182,7 @@ export default {
           Swal.fire({
             position: "top",
             icon: "error",
-            title: "No se pudo añadir al usuario",
+            title: "No se pudo editar el usuario",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -247,8 +230,7 @@ export default {
   },
   data() {
     return {
-      image:
-        "https://icons.iconarchive.com/icons/mahm0udwally/all-flat/256/User-icon.png",
+      image: "",
     };
   },
 };

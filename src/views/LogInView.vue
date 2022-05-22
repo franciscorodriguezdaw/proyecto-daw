@@ -54,6 +54,11 @@
 body {
   width: 100vw;
   position: fixed;
+  background: url("../assets/fondo.jpg");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-size: 400px 300px;
 }
 
 #homeIcon {

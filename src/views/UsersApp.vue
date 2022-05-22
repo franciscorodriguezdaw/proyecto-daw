@@ -49,7 +49,7 @@
         </div>
 
         <div class="col col-xs-1 cardUser" id="imgUser">
-          <router-link to="/detail">
+          <router-link to="/detail" @click="loadUser(user.id)">
             <img class="profilePic" :src="user.picture" alt="Foto de perfil" />
           </router-link>
         </div>
@@ -119,9 +119,14 @@ export default {
         }
       });
     },
+    loadUser(id) {
+      if(sessionStorage.getItem("id") != id){
+        sessionStorage.setItem("id", id);
+      }
+    },
   },
   created() {
-    axios.get("http://localhost:8000/api.php/").then((response) => {
+    axios.get("http://localhost:8080/api/").then((response) => {
       if (sessionStorage.getItem("user")) {
         console.log(response);
         this.users = response.data.users;
@@ -206,6 +211,13 @@ export default {
 </script>
 
 <style>
+body {
+  background: url("../assets/fondo.jpg");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-size: 400px 300px;
+}
 #info > * {
   text-align: left;
   font-size: 12px;
