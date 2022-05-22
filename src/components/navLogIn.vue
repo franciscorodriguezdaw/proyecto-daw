@@ -1,15 +1,13 @@
 <template>
   <nav id="app" class="container-fluid">
-    <div>
-      <router-link to="/" id="homeIcon">
-        <a class="navbar-brand" href="">
-          <img src="../assets/casa.png" width="30" height="30" alt="Menú" />
-        </a>
-      </router-link>
-    </div>
+    <router-link to="/" id="homeIcon">
+      <a class="navbar-brand" href="">
+        <img src="../assets/casa.png" width="30" height="30" alt="Menú" />
+      </a>
+    </router-link>
 
     <ul class="nav nav-tabs justify-content-end mb-3">
-      <li class="nav-item">
+      <li class="nav-item" id="separatorLi">
         <a class="nav-link" id="separator" href=""></a>
       </li>
       <router-link to="/">
@@ -168,5 +166,35 @@ i:hover {
     width: 10px;
     height: 10px;
   }
+
+  @media (max-width: 600px) {
+    .nav-link {
+      font-size: 14px;
+    }
+    #separatorLi {
+      width: 50px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-link {
+    font-size: 14px;
+  }
+  #separatorLi {
+    display: none;
+  }
+
+  #homeIcon {
+   top: 10px;
+  left: 20px;
+   width: 45px;
+  height: 45px;
+  }
+
+  #homeIcon > a > img {
+  margin: 0 auto;
+  margin-top: 6px;
+}
 }
 </style>
