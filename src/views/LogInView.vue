@@ -219,18 +219,19 @@ export default {
   methods: {
     login() {
       let logged = false;
-      let username = this.username;
-      let password = this.password;
+      // let username = this.username;
+      // let password = this.password;
 
       axios
         .get("http://localhost:8000/api.php")
         .then(function (response) {
-          response.data.users.forEach((user) => {
-            if (user.username == username && user.password == password) {
-              logged = true;
-            }
-          });
-  console.log(response.data)
+          // response.data.users.forEach((user) => {
+          //   if (user.username == username && user.password == password) {
+          //     logged = true;
+          //   }
+            console.log(response.data);
+
+          // });
 
           if (response.status == 200 && logged) {
             const Toast = Swal.mixin({
