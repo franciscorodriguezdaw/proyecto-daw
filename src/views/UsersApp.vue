@@ -52,7 +52,7 @@
           <router-link to="/detail">
             <img
               class="profilePic"
-              :src="'data:image/jpeg;base64,' + user.picture"
+              :src="user.picture"
               alt="Foto de perfil"
             />
           </router-link>
@@ -125,7 +125,8 @@ export default {
     },
   },
   created() {
-    axios.get("http://localhost:8080/api/").then((response) => {
+    axios.get("http://localhost:8000/api.php/").then((response) => {
+      console.log(response)
       this.users = response.data.users;
     });
   },

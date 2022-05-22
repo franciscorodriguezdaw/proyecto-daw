@@ -125,12 +125,12 @@
     </div>
 
     <div class="mb-4 rowInput">
-      <label for="moreInf" class="form-label" id="observations"
+      <label for="moreInf" class="form-label"
         >Observaciones</label
       >
-      <textarea
+      <textarea 
         class="form-control"
-        id="moreInf"
+        id="observations"
         name="moreInf"
         rows="6"
       ></textarea>
@@ -168,22 +168,19 @@ export default {
     registerUser(e) {
       e.preventDefault();
       this.getBase64Image(this.image, function (dataUrl) {
-        console.log("RESULT:", dataUrl);
-      });
-      axios
+        axios
         .post("http://localhost:8000/registerUser.php", {
           username: document.getElementById("userWeb").value,
           name: document.getElementById("name").value,
           surname: document.getElementById("surname").value,
           password: document.getElementById("password").value,
-          picture: this.image,
+          picture: dataUrl,
           observations: document.getElementById("observations").value,
         })
         .then(function (response) {
           console.log(response.data);
 
-          //SWAL añadido correctamente
-
+          //SWAL cuando se añade correctamente
           Swal.fire({
             position: "top",
             icon: "success",
@@ -202,6 +199,7 @@ export default {
             timer: 1500,
           });
         });
+      });
     },
     loadPicture: function (e) {
       let extension = e.target.files[0].name.substr(

@@ -11,7 +11,7 @@ include "connection.php";
 
 
 //crear empleado
-function createUser($username, $name, $surname, $password, $picture = null, $observations = null)
+function createUser($username, $name, $surname, $password, $picture, $observations)
 {
     $pdo = Connection::getInstance();
 

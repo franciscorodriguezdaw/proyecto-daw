@@ -6,6 +6,8 @@ cors();
 $data = file_get_contents("php://input");
 $user = json_decode($data);
 
+var_dump($user);
+
 if (createUser(
     $user->username,
     $user->name,
