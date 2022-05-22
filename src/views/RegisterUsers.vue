@@ -1,7 +1,7 @@
 <template>
   <nav-logIn></nav-logIn>
   <article class="container">
-      <form-user></form-user>
+    <form-user></form-user>
   </article>
 
   <footer-personal></footer-personal>
@@ -24,7 +24,14 @@ export default {
 </script>
 
 <style>
-body{
-  background: white;
+
+body {
+  width: 100vw;
+  /* position: fixed; */
+  background: url("../assets/fondo.jpg");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-size: 400px 300px;
 }
 </style>

@@ -51,10 +51,10 @@
 </template>
 
    <style>
-body {
+html {
   width: 100vw;
-  position: fixed;
-  background: url("../assets/fondo.jpg");
+  background-color: rgb(255, 255, 255);
+  /* background: url("../assets/fondo.jpg"); */
   background-repeat: repeat-x;
   background-position: bottom;
   background-attachment: fixed;
