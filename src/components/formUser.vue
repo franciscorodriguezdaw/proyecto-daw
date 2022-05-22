@@ -167,7 +167,8 @@ export default {
   methods: {
     registerUser(e) {
       e.preventDefault();
-      this.getBase64Image(this.image, function (dataUrl) {
+      if(sessionStorage.getItem("user")){
+        this.getBase64Image(this.image, function (dataUrl) {
         axios
         .post("http://localhost:8000/registerUser.php", {
           username: document.getElementById("userWeb").value,
@@ -200,6 +201,15 @@ export default {
           });
         });
       });
+      } else {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Error: no estás autorizado a realizar esta operación",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+      }
     },
     loadPicture: function (e) {
       let extension = e.target.files[0].name.substr(
@@ -394,6 +404,4 @@ input[type="time"] {
     height: 40px;
   }
 }
-
-
 </style>

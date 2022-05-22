@@ -218,22 +218,20 @@ export default {
   }),
   methods: {
     login() {
-      let logged = false;
-      // let username = this.username;
-      // let password = this.password;
+      let username = this.username;
+      let password = this.password;
 
       axios
         .get("http://localhost:8000/api.php")
         .then(function (response) {
-          // response.data.users.forEach((user) => {
-          //   if (user.username == username && user.password == password) {
-          //     logged = true;
-          //   }
+          response.data.users.forEach((user) => {
+            if (user.username == username && user.password == password) {
+              sessionStorage.setItem("user", user.username);
+            }
             console.log(response.data);
+          });
 
-          // });
-
-          if (response.status == 200 && logged) {
+          if (response.status == 200) {
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",

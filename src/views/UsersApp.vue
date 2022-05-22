@@ -50,11 +50,7 @@
 
         <div class="col col-xs-1 cardUser" id="imgUser">
           <router-link to="/detail">
-            <img
-              class="profilePic"
-              :src="user.picture"
-              alt="Foto de perfil"
-            />
+            <img class="profilePic" :src="user.picture" alt="Foto de perfil" />
           </router-link>
         </div>
         <div class="col cardUser" id="nameUser">
@@ -126,8 +122,10 @@ export default {
   },
   created() {
     axios.get("http://localhost:8000/api.php/").then((response) => {
-      console.log(response)
-      this.users = response.data.users;
+      if (sessionStorage.getItem("user")) {
+        console.log(response);
+        this.users = response.data.users;
+      }
     });
   },
   saveCheckTime() {

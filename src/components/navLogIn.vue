@@ -24,7 +24,7 @@
 
       <li class="nav-item">
         <router-link to="/">
-          <a class="nav-link" href="">Log Out</a>
+          <a class="nav-link" @click="logOut" href="">Log Out</a>
         </router-link>
       </li>
       <li class="nav-item">
@@ -61,6 +61,11 @@
 <script>
 export default {
   name: "nav-logIn",
+  methods: {
+    logOut(){
+      sessionStorage.removeItem("user");
+    }
+  }
 };
 </script>
 
