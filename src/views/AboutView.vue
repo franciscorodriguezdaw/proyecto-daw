@@ -1,5 +1,5 @@
 <template>
-<nav-logOut></nav-logOut>
+  <nav-logOut></nav-logOut>
 
   <article class="container">
     <div class="card-group">
@@ -82,6 +82,13 @@ export default {
 
 
 <style>
+body {
+  background: url("../assets/fondo.jpg");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-size: 300px 200px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

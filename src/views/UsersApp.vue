@@ -120,9 +120,88 @@ export default {
       });
     },
     loadUser(id) {
-      if(sessionStorage.getItem("id") != id){
+      if (sessionStorage.getItem("id") != id) {
         sessionStorage.setItem("id", id);
       }
+    },
+
+    saveCheckTime() {
+      // axios
+      //   .post(
+      //     "http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php"
+      //   )
+      //   .then((response) => {
+      //     console.log(response);
+      //     Swal.fire(
+      //       "Su Hora de Entrada al Trabajo",
+      //       "Ha sido registrado correctamente",
+      //       "success"
+      //     );
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      // Swal.fire(
+      //       "Su Hora de Entrada al Trabajo",
+      //       "NO ha sido registrado correctamente",
+      //       "failed"
+      //     );
+      //   });
+    },
+
+    saveDepartureTime() {
+      // axios
+      //   .post(
+      //     "http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php"
+      //   )
+      //   .then((response) => {
+      //     console.log(response);
+      //     Swal.fire(
+      //       "Su Hora de Salida al Trabajo",
+      //       "Ha sido registrado correctamente",
+      //       "success"
+      //     );
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //     Swal.fire(
+      //       "Su Hora de Salida al Trabajo",
+      //       "NO ha sido registrado correctamente",
+      //       "failed"
+      //     );
+      //   });
+    },
+
+    addPot() {
+      Swal.fire({
+        title: "Su bote del día",
+        input: "number",
+        inputAttributes: {
+          autocapitalize: "off",
+        },
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        showLoaderOnConfirm: true,
+        preConfirm: (pot) => {
+          console.log(pot);
+          // axios
+          //   .post("http://localhost/dashboard/proyecto-daw/src/backend/addPot.php")
+          //   .then((response) => {
+          //     if (!response.ok) {
+          //       throw new Error(response.statusText)
+          //     }
+          //     return response.json()
+          //   })         //
+
+          //   .catch(error => {
+          //     Swal.showValidationMessage(
+          //       `Request failed: ${error}`
+          //     )
+          //   })
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+      }).then((result) => {
+        console.log(result);
+      });
     },
   },
   created() {
@@ -132,71 +211,6 @@ export default {
         this.users = response.data.users;
       }
     });
-  },
-  saveCheckTime() {
-    Swal.fire(
-      "Su Hora de Entrada al Trabajo",
-      "Ha sido registrado correctamente",
-      "success"
-    );
-    // axios
-    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php")
-    //   .then((response) => {
-    //     this.checkInTime = response.data.check_in_time;
-    //     console.log(this.checkInTime);
-    //   });
-  },
-
-  saveDepartureTime() {
-    Swal.fire(
-      "Su Hora de Salida al Trabajo",
-      "Ha sido registrado correctamente",
-      "success"
-    );
-
-    // axios
-    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php")
-    //   .then((response) => {
-    //     this.checkInTime = response.data.check_in_time;
-    //     console.log(this.checkInTime);
-    //   });
-  },
-
-  addPot() {
-    Swal.fire({
-      title: "Su bote del día",
-      input: "number",
-      inputAttributes: {
-        autocapitalize: "off",
-      },
-      showCancelButton: true,
-      confirmButtonText: "Confirmar",
-      showLoaderOnConfirm: true,
-      preConfirm: (login) => {
-        console.log(login);
-        // return fetch(`//api.github.com/users/${login}`)
-        //   .then(response => {
-        //     if (!response.ok) {
-        //       throw new Error(response.statusText)
-        //     }
-        //     return response.json()
-        //   })
-        //   .catch(error => {
-        //     Swal.showValidationMessage(
-        //       `Request failed: ${error}`
-        //     )
-        //   })
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      console.log(result);
-    });
-    // axios
-    //   .post("http://localhost/dashboard/proyecto-daw/src/backend/addPot.php")
-    //   .then((response) => {
-    //     this.checkInTime = response.data.check_in_time;
-    //     console.log(this.checkInTime);
-    //   });
   },
 
   mounted() {

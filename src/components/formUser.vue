@@ -1,4 +1,9 @@
 <template>
+  <router-link to="/users" id="backList">
+    <a class="navbar-brand" href="">
+      <img src="../assets/undo.png" width="25" height="25" alt="Menú" />
+    </a>
+  </router-link>
   <form class="container contForm" @submit="registerUser">
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="userWeb" class="form-label">Usuario de plataforma</label>
@@ -36,7 +41,7 @@
       />
     </div>
 
-    <div class="mb-2 col-md-7 col-xs-12 rowInput">
+    <div class="col-md-7 col-xs-12 rowInput">
       <label for="avatar" class="form-label"
         >Seleccione su foto de perfil</label
       >
@@ -171,7 +176,6 @@ export default {
       e.preventDefault();
       if (sessionStorage.getItem("user")) {
         this.getBase64Image(this.image, function (dataUrl) {
-
           axios
             .post("http://localhost:8080/api/", {
               username: document.getElementById("userWeb").value,
@@ -258,6 +262,38 @@ export default {
 </script>
 
 <style>
+#backList {
+  top: 45px;
+  left: 100px;
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 40%;
+  border: 3px solid rgb(107, 101, 77);
+  background: rgb(251, 239, 218);
+  transition: 2s;
+}
+
+#backList:hover {
+  background-color: #fbea96b7;
+  top: 10px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#backList > a {
+  margin: 0 auto;
+}
+
+#backList > a > img {
+  margin: 0 auto;
+  margin-top: 8px;
+}
+
 #submitButton {
   margin-top: -20px;
 }
@@ -321,7 +357,14 @@ button[type="submit"]:hover {
 }
 
 .rowInput > label {
-  font-size: 16px;
+  font-size: 20px;
+}
+.rowInput > input {
+  font-size: 20px;
+}
+
+.rowInput > textarea {
+  font-size: 20px;
 }
 
 #agreeRead {
@@ -409,6 +452,20 @@ input[type="time"] {
     margin-right: 10%;
     width: 30%;
     height: 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  #backList {
+    top: 10px;
+    left: 100px;
+    width: 45px;
+    height: 45px;
+  }
+
+  #backList > a > img {
+    margin: 0 auto;
+    margin-top: 6px;
   }
 }
 </style>
