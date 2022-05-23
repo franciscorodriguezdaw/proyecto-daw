@@ -73,9 +73,24 @@
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input type="time" style="width: 200px;" class="form-control-inline" name="checkInTime" id="checkInTime" readonly /><br />
-      <label for="workday" class="form-control-inline">Hora de Salida </label><br/>
-      <input type="time" style="width: 200px;" class="form-control-inline" name="departureTime" id="departureTime" readonly />
+      <input
+        type="time"
+        style="width: 200px"
+        class="form-control-inline"
+        name="checkInTime"
+        id="checkInTime"
+        readonly
+      /><br />
+      <label for="workday" class="form-control-inline">Hora de Salida </label
+      ><br />
+      <input
+        type="time"
+        style="width: 200px"
+        class="form-control-inline"
+        name="departureTime"
+        id="departureTime"
+        readonly
+      />
     </div>
 
     <div class="mb-4 col-md-7 col-xs-12 rowInput salario">
@@ -140,9 +155,9 @@
     </div>
 
     <div class="mb-2 col-8 form-check" id="confirm">
-        <button type="submit" class="btn btn-primary" id="submitButton">
-          Editar
-        </button>
+      <button type="submit" class="btn btn-primary" id="submitButton">
+        Editar
+      </button>
     </div>
   </form>
 </template>
@@ -183,6 +198,9 @@ export default {
                 showConfirmButton: false,
                 timer: 1500,
               });
+              setTimeout(() => {
+                window.location = "users";
+              }, 2000);
             })
             .catch((e) => {
               console.log("Error: " + e);

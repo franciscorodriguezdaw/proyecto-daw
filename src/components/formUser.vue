@@ -200,6 +200,9 @@ export default {
                 showConfirmButton: false,
                 timer: 1500,
               });
+              setTimeout(() => {
+              window.location = "users";
+            }, 2000);
             })
             .catch((e) => {
               console.log("Error: " + e);
