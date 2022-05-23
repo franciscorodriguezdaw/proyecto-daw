@@ -2,13 +2,6 @@
 
 include "connection.php";
 
-// createUser("franlever", "Fran", "Rodriguez", "AsR-8w4T$_QB");
-// echo login("franlever", "AsR-8w4T$_QB");
-// getUsers();
-
-//ultimo valor -> id de empleado -> tiene que existir en la BD
-//addJobById(17, 150, 1739, 3);
-
 
 //crear empleado
 function createUser($username, $name, $surname, $password, $picture, $observations)
@@ -142,6 +135,7 @@ function getUserJobById($id)
     return $stmt->execute();
 }
 
+//asignar trabajo por id de empleado
 function addJobById($job, $pot, $salary, $salary_type, $employee_ID)
 {
     $pdo = Connection::getInstance();
@@ -159,6 +153,7 @@ function addJobById($job, $pot, $salary, $salary_type, $employee_ID)
     return $stmt->execute();
 }
 
+//actualizar trabajo por id de empleado
 function updateJobById($job, $pot, $salary, $salary_type, $employee_ID)
 {
     $pdo = Connection::getInstance();
@@ -176,8 +171,8 @@ function updateJobById($job, $pot, $salary, $salary_type, $employee_ID)
     return $stmt->execute();
 }
 
-
-function updateCheckIn($id, $check_in_time)
+//actualizar check-in
+function insertCheckIn($id, $check_in_time)
 {
     $pdo = Connection::getInstance();
 
@@ -191,7 +186,22 @@ function updateCheckIn($id, $check_in_time)
     return $stmt->execute();
 }
 
-function updateCheckOut($id, $departure_time)
+function updateCheckIn($id, $check_in_time)
+{
+    $pdo = Connection::getInstance();
+
+    $sql = "UPDATE `schedule` SET `check_in_time` = ? WHERE `employee_ID` = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindParam(1, $check_in_time);
+    $stmt->bindParam(2, $id);
+
+    return $stmt->execute();
+}
+
+//actualizar check-out
+function insertCheckOut($id, $departure_time)
 {
     $pdo = Connection::getInstance();
 
@@ -205,18 +215,46 @@ function updateCheckOut($id, $departure_time)
     return $stmt->execute();
 }
 
-function addPot($id, $pot)
+function updateCheckOut($id, $departure_time)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "INSERT INTO `job`(`employee_ID`,`pot`) VALUES (?, ?)";
+    $sql = "UPDATE `schedule` SET `departure_time` = ? WHERE `employee_ID` = ?";
 
     $stmt = $pdo->prepare($sql);
 
-    $stmt->bindParam(1, $id);
-    $stmt->bindParam(2, $pot);
+    $stmt->bindParam(1, $departure_time);
+    $stmt->bindParam(2, $id);
 
     return $stmt->execute();
+}
+
+function getCheckInOut()
+{
+    $pdo = Connection::getInstance();
+    $checks = [];
+
+    $sql = "SELECT * FROM schedule";
+    $stmt = $pdo->query($sql);
+    
+    $stmt->execute();
+    
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $checks[] = $row;
+    }
+    
+    return $checks;
+}
+
+function scheduleExists($id){
+    
+    $pdo = Connection::getInstance();
+
+    $sql = "SELECT COUNT(*) FROM schedule WHERE employee_ID = '$id'";
+
+    $stmt = $pdo->query($sql);
+
+    return $stmt->fetchColumn() > 0;
 }
 
 // function login($username, $password)

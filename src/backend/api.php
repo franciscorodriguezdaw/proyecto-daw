@@ -53,9 +53,7 @@ function Main()
 
                 $userFetched = getUserByCredentials($user->username, $user->password);
 
-                var_dump($userFetched);
                 addJobById($user->job, $pot, $user->salary, $user->salary_type, $userFetched["id"]);
-                
             } else {
                 echo "ERROR: no se pudo insertar al usuario";
             }

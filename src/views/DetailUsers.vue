@@ -46,6 +46,16 @@ export default {
         }
       });
     });
+    axios.get("http://localhost:8000/scheduleCheck.php").then((response) => {
+      let userId = sessionStorage.getItem("id");
+      response.data.forEach((e) => {
+        if(userId == e.employee_ID){
+          console.log(e);
+          document.getElementById("checkInTime").value = e.check_in_time.substr(11, 16);
+          document.getElementById("departureTime").value = e.departure_time.substr(11, 16);
+        }
+      });
+    });
   },
 };
 </script>

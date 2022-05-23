@@ -8,27 +8,18 @@
             <button
               type="button"
               class="btn btn-warning"
-              @click="saveCheckTime()"
+              @click="checkIn(user.id)"
             >
               Check In
             </button>
           </div>
           <div class="card selectUpd" id="checkOut">
             <button
-              @click="saveDepartureTime()"
+              @click="checkOut(user.id)"
               type="button"
               class="btn btn-danger"
             >
               Check Out
-            </button>
-          </div>
-          <div class="card selectUpd" id="pot">
-            <button
-              @click="addPot()"
-              type="button"
-              class="btn btn-outline-dark"
-            >
-              BOTE
             </button>
           </div>
         </div>
@@ -125,83 +116,50 @@ export default {
       }
     },
 
-    saveCheckTime() {
-      // axios
-      //   .post(
-      //     "http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php"
-      //   )
-      //   .then((response) => {
-      //     console.log(response);
-      //     Swal.fire(
-      //       "Su Hora de Entrada al Trabajo",
-      //       "Ha sido registrado correctamente",
-      //       "success"
-      //     );
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      // Swal.fire(
-      //       "Su Hora de Entrada al Trabajo",
-      //       "NO ha sido registrado correctamente",
-      //       "failed"
-      //     );
-      //   });
+    checkIn(id) {
+      axios
+        .post(
+          "http://localhost:8000/scheduleCheck.php", {id: id, check: "in"}
+        )
+        .then((response) => {
+          console.log(response.data);
+          Swal.fire(
+            "Su Hora de Entrada al Trabajo",
+            "Ha sido registrado correctamente",
+            "success"
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+      Swal.fire(
+            "Su Hora de Entrada al Trabajo",
+            "NO ha sido registrado correctamente",
+            "failed"
+          );
+        });
     },
 
-    saveDepartureTime() {
-      // axios
-      //   .post(
-      //     "http://localhost/dashboard/proyecto-daw/src/backend/scheduleCheck.php"
-      //   )
-      //   .then((response) => {
-      //     console.log(response);
-      //     Swal.fire(
-      //       "Su Hora de Salida al Trabajo",
-      //       "Ha sido registrado correctamente",
-      //       "success"
-      //     );
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     Swal.fire(
-      //       "Su Hora de Salida al Trabajo",
-      //       "NO ha sido registrado correctamente",
-      //       "failed"
-      //     );
-      //   });
-    },
-
-    addPot() {
-      Swal.fire({
-        title: "Su bote del día",
-        input: "number",
-        inputAttributes: {
-          autocapitalize: "off",
-        },
-        showCancelButton: true,
-        confirmButtonText: "Confirmar",
-        showLoaderOnConfirm: true,
-        preConfirm: (pot) => {
-          console.log(pot);
-          // axios
-          //   .post("http://localhost/dashboard/proyecto-daw/src/backend/addPot.php")
-          //   .then((response) => {
-          //     if (!response.ok) {
-          //       throw new Error(response.statusText)
-          //     }
-          //     return response.json()
-          //   })         //
-
-          //   .catch(error => {
-          //     Swal.showValidationMessage(
-          //       `Request failed: ${error}`
-          //     )
-          //   })
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-      }).then((result) => {
-        console.log(result);
-      });
+    checkOut(id) {
+      axios
+        .post(
+          "http://localhost:8000/scheduleCheck.php", {id: id, check: "out"}
+        )
+        .then((response) => {
+          console.log(response);
+          Swal.fire(
+            "Su Hora de Salida al Trabajo",
+            "Ha sido registrado correctamente",
+            "success"
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire(
+            "Su Hora de Salida al Trabajo",
+            "NO ha sido registrado correctamente",
+            "failed"
+          );
+        });
     },
   },
   created() {
