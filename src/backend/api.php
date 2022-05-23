@@ -67,7 +67,7 @@ function Main()
             }
             break;
         case 'PUT':
-            echo "culo";
+            echo "problemas";
             break;
         case 'DELETE':
 
