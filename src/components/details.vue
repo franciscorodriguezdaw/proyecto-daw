@@ -141,7 +141,7 @@
 
     <div class="mb-2 col-8 form-check" id="confirm">
         <button type="submit" class="btn btn-primary" id="submitButton">
-          Registrar
+          Editar
         </button>
     </div>
   </form>

@@ -159,11 +159,9 @@
     </div>
 
     <div class="mb-2 col-8 form-check" id="confirm">
-      <a href="http://localhost:8080/users">
         <button type="submit" class="btn btn-primary" id="submitButton">
           Registrar
         </button>
-      </a>
     </div>
   </form>
 </template>
@@ -202,7 +200,6 @@ export default {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              window.location.href = "localhost:8080/users";
             })
             .catch((e) => {
               console.log("Error: " + e);
