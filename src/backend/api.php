@@ -39,13 +39,7 @@ function Main()
             $data = file_get_contents("php://input");
             $user = json_decode($data);
 
-            // var_dump($user);
-
-            echo <<<EOF
-            //     $user->job,
-            //     $user->salary,
-            //     $user->salary_type,
-            EOF;
+            var_dump($user);
 
             if (createUser(
                 $user->username,
@@ -55,13 +49,13 @@ function Main()
                 $user->picture,
                 $user->observations
             )) {
-
                 $pot = rand(10, 500) / 10;
 
                 $userFetched = getUserByCredentials($user->username, $user->password);
 
                 var_dump($userFetched);
                 addJobById($user->job, $pot, $user->salary, $user->salary_type, $userFetched["id"]);
+                
             } else {
                 echo "ERROR: no se pudo insertar al usuario";
             }
