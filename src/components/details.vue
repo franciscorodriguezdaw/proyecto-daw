@@ -73,9 +73,9 @@
       <label for="workday" class="form-label">Jornada Laboral</label>
       <br />
       <label for="workday" class="form-control-inline">Hora de Entrada </label>
-      <input type="time" style="width: 200px;" class="form-control-inline" name="checkInTime" id="checkInTime" /><br />
+      <input type="time" style="width: 200px;" class="form-control-inline" name="checkInTime" id="checkInTime" readonly /><br />
       <label for="workday" class="form-control-inline">Hora de Salida </label><br/>
-      <input type="time" style="width: 200px;" class="form-control-inline" name="departureTime" id="departureTime" />
+      <input type="time" style="width: 200px;" class="form-control-inline" name="departureTime" id="departureTime" readonly />
     </div>
 
     <div class="mb-4 col-md-7 col-xs-12 rowInput salario">
