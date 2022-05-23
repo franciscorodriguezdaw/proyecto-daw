@@ -159,7 +159,7 @@ export default {
       if (sessionStorage.getItem("user")) {
         this.getBase64Image(this.image, function (dataUrl) {
           axios
-            .post("http://localhost:8000/updateUser.php", {
+            .put("http://localhost:8080/api/", {
               id: sessionStorage.getItem("id"),
               username: document.getElementById("userWeb").value,
               name: document.getElementById("name").value,

@@ -34,7 +34,7 @@ export default {
           document.getElementById("selectWork").value = user.job;
           document.getElementById("surname").value = user.surname;
           document.getElementById("observations").value =
-            user.observations ?? "";
+            user.observations || "";
           document.getElementById("salary").value = user.salary;
 
           if (user.salary_type == "Casual") {
