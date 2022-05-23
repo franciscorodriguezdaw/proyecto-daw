@@ -55,7 +55,7 @@ function deleteUserById($id)
     $pdo = Connection::getInstance();
     $sql = "SELECT * FROM `job` WHERE `employee_ID` = $id";
     $stmt = $pdo->query($sql);
-    
+
     if ($stmt->rowCount() > 0) {
         $sql = "DELETE FROM `job` WHERE `employee_ID` = ?";
         $stmt = $pdo->prepare($sql);
@@ -75,7 +75,8 @@ function getUserByCredentials($username, $password)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "SELECT * FROM `user` LEFT JOIN `job` ON `user`.`id` = `job`.`employee_ID` WHERE `username` = ? AND `password` = ?";
+    $sql = "SELECT `user`.`id`, `user`.`username`, `user`.`name`, `user`.`surname`, `user`.`password`, `user`.`picture`,
+    `user`.`observations`, `job`.`job`, `job`.`salary`, `job`.`salary_type`, `job`.`pot`  FROM `user` LEFT JOIN `job` ON `user`.`id` = `job`.`employee_ID` WHERE `username` = ? AND `password` = ?";
 
     $stmt = $pdo->prepare($sql);
 

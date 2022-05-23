@@ -194,7 +194,6 @@ export default {
             })
             .then(function (response) {
               console.log(response.data);
-
               //SWAL cuando se añade correctamente
               Swal.fire({
                 position: "top",
