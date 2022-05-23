@@ -162,7 +162,7 @@ function updateJobById($job, $pot, $salary, $salary_type, $employee_ID)
 {
     $pdo = Connection::getInstance();
 
-    $sql = "UPDATE `job` SET `job`='?',`pot`='?',`salary`='?',`salary_type`='?' WHERE `employee_ID`='?'";
+    $sql = "UPDATE `job` SET `job`=?,`pot`=?,`salary`=?,`salary_type`=? WHERE `employee_ID`=?";
 
     $stmt = $pdo->prepare($sql);
 

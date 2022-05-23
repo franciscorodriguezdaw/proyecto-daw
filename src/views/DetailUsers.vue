@@ -25,17 +25,25 @@ export default {
     let userId = sessionStorage.getItem("id");
     axios.get("http://localhost:8080/api/").then((response) => {
       console.log(userId);
-      response.data.users.forEach(user => {
-        // if(user.id == userId){
-          // console.log("!!Es: " + user.name)
+      response.data.users.forEach((user) => {
+        if (user.id == userId) {
           document.getElementById("userWeb").value = user.username;
           document.getElementById("password").value = user.password;
           document.getElementById("picture").src = user.picture;
           document.getElementById("name").value = user.name;
+          document.getElementById("selectWork").value = user.job;
           document.getElementById("surname").value = user.surname;
-          document.getElementById("observations").value = user.observations ?? "";
-          console.log(user)
-        // }
+          document.getElementById("observations").value =
+            user.observations ?? "";
+          document.getElementById("salary").value = user.salary;
+
+          if (user.salary_type == "Casual") {
+            document.getElementById("salTime").checked = true;
+          } else {
+            document.getElementById("month").checked = true;
+          }
+          console.log(user);
+        }
       });
     });
   },
