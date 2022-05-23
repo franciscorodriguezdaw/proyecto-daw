@@ -331,7 +331,7 @@ textarea {
   margin-left: 40px;
 }
 
-#confirm > a> button {
+#confirm > button {
   position: absolute;
   margin-top: 10px;
   float: left;
