@@ -203,11 +203,30 @@ i:hover {
   .container {
     margin-left: 5%;
   }
+
+  .card {
+    width: 80%;
+  }
 }
 
 @media (max-width: 500px) {
   .container {
-    margin-left: 0;
+    margin-left: -20px;
+  }
+    .card {
+    min-width: 300px;
+  }
+}
+
+
+@media (max-width: 450px) {
+
+  input  {
+    width: 100%;
+  }
+
+  .button  {
+    width: 70%;
   }
 }
 </style>

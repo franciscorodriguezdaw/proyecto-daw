@@ -24,6 +24,7 @@
         id="password"
         name="password"
         aria-describedby="userWeb"
+        required
       />
     </div>
 
@@ -56,7 +57,7 @@
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="selectWork">Seleccione su Labor en la Empresa</label>
-      <select class="form-select" id="selectWork" name="selectWork">
+      <select class="form-select" id="selectWork" name="selectWork" required>
         <option selected hidden>Seleccione su labor en la empresa</option>
         <option>Programador web</option>
         <option>Administrador de sistemas</option>
@@ -94,7 +95,6 @@
           type="radio"
           name="workShift"
           id="month"
-          checked
           required
         />
         <label class="form-check-label" for="month"> Mensual </label>
@@ -140,9 +140,9 @@
     </div>
 
     <div class="mb-2 col-8 form-check" id="confirm">
-      <button type="submit" class="btn btn-primary" id="submitButton">
-        Registrar
-      </button>
+        <button type="submit" class="btn btn-primary" id="submitButton">
+          Registrar
+        </button>
     </div>
   </form>
 </template>

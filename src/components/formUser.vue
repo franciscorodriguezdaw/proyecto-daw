@@ -28,6 +28,7 @@
         id="password"
         name="password"
         aria-describedby="userWeb"
+        required
       />
     </div>
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
@@ -38,6 +39,7 @@
         id="repeatPassword"
         name="repeatPassword"
         aria-describedby="userWeb"
+        required
       />
     </div>
 
@@ -70,7 +72,7 @@
 
     <div class="mb-2 col-md-7 col-xs-12 rowInput">
       <label for="selectWork">Seleccione su Labor en la Empresa</label>
-      <select class="form-select" id="selectWork" name="selectWork">
+      <select class="form-select" id="selectWork" name="selectWork" required>
         <option selected hidden>Seleccione su labor en la empresa</option>
         <option value="Programador web">Programador web</option>
         <option value="Administrador de sistemas">
@@ -124,7 +126,6 @@
           type="radio"
           name="workShift"
           id="salTime"
-          checked
           required
         />
         <label class="form-check-label" for="salTime">
@@ -158,9 +159,11 @@
     </div>
 
     <div class="mb-2 col-8 form-check" id="confirm">
-      <button type="submit" class="btn btn-primary" id="submitButton">
-        Registrar
-      </button>
+      <a href="http://localhost:8080/users">
+        <button type="submit" class="btn btn-primary" id="submitButton">
+          Registrar
+        </button>
+      </a>
     </div>
   </form>
 </template>
@@ -199,6 +202,7 @@ export default {
                 showConfirmButton: false,
                 timer: 1500,
               });
+              window.location.href = "localhost:8080/users";
             })
             .catch((e) => {
               console.log("Error: " + e);
@@ -327,7 +331,7 @@ textarea {
   margin-left: 40px;
 }
 
-#confirm > button {
+#confirm > a> button {
   position: absolute;
   margin-top: 10px;
   float: left;
