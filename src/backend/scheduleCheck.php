@@ -14,6 +14,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         echo json_encode(getCheckInOut());
         break;
     case 'POST':
+
+        //check-in
         if ($json->check == "in") {
             //si tiene check-in y out asignados
             if (scheduleExists($json->id)) {
@@ -22,7 +24,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 insertCheckIn($json->id, $date);
             }
         }
-
+        
+        //check-out
         if ($json->check == "out") {
             //si tiene check-in y out asignados
             if (scheduleExists($json->id)) {

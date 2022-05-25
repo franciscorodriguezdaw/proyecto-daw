@@ -42,7 +42,6 @@ export default {
           } else {
             document.getElementById("month").checked = true;
           }
-          console.log(user);
         }
       });
     });
@@ -50,7 +49,6 @@ export default {
       let userId = sessionStorage.getItem("id");
       response.data.forEach((e) => {
         if(userId == e.employee_ID){
-          console.log(e);
           document.getElementById("checkInTime").value = e.check_in_time.substr(11, 16);
           document.getElementById("departureTime").value = e.departure_time.substr(11, 16);
         }

@@ -48,9 +48,9 @@
           <p>{{ user.name + " " + user.surname }}</p>
           <span id="info">
             <p><b>Trabajo: </b>{{ user.job }}</p>
-            <p><b>Salario: </b>{{ user.salary }}</p>
+            <p><b>Salario: </b>{{ user.salary }} €</p>
             <p><b>Tipo de salario: </b>{{ user.salary_type }}</p>
-            <p><b>Propina: </b>{{ user.pot }}</p>
+            <p><b>Propina: </b>{{ user.pot }} €</p>
           </span>
         </div>
 
